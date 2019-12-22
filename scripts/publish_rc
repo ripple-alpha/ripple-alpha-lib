@@ -1,0 +1,18 @@
+echo "PUBLISH RELEASE CANDIDATE"
+
+function exit_on_error {
+  res=$?
+  [[ ${res:-99} -eq 0 ]] || exit $res
+}
+
+rm -rf build
+
+yarn install
+gulp
+yarn test
+exit_on_error
+
+echo ""
+echo "publish rc to npm"
+yarn publish --tag beta
+exit_on_error
