@@ -6,7 +6,7 @@ This is the recommended library for integrating a JavaScript/TypeScript app with
 
 ### Features
 
-+ Connect to a `rippled` server from Node.js or a web browser
++ Connect to a `ripple-alpha-core` server from Node.js or a web browser
 + Listen to events on the XLA Ledger (transactions, ledger, validations, etc.)
 + Sign and submit transactions to the XLA Ledger
 + Type definitions for TypeScript

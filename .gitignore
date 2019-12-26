@@ -24,6 +24,7 @@ npm-shrinkwrap.json
 build/
 tags
 bin/rippled
+bin/ripple-alpha-core
 Debug/*.*
 Release/*.*
 
@@ -40,6 +41,7 @@ db/*.db-*
 
 # Ignore customized configs
 rippled.cfg
+ripple-alpha-core.cfg
 validators.txt
 test/config.js
 
