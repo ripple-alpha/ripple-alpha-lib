@@ -10,7 +10,7 @@
     },
     "sendMax": {
       "$ref": "laxAmount",
-      "description": "Amount of source currency the check is allowed to debit the sender, including transfer fees on non-XRP currencies."
+      "description": "Amount of source currency the check is allowed to debit the sender, including transfer fees on non-XLA currencies."
     },
     "destinationTag": {
       "$ref": "tag",

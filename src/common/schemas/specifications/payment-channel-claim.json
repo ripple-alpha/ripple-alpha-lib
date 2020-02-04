@@ -10,15 +10,15 @@
     },
     "amount": {
       "$ref": "value",
-      "description": "Amount of XRP authorized by this signature."
+      "description": "Amount of XLA authorized by this signature."
     },
     "balance": {
       "$ref": "value",
-      "description": "Total XRP balance delivered by this channel after claim is processed."
+      "description": "Total XLA balance delivered by this channel after claim is processed."
     },
     "signature": {
       "$ref": "signature",
-      "description": "Signed claim authorizing withdrawal of XRP from the channel. (Required except from the channel's source address.)"
+      "description": "Signed claim authorizing withdrawal of XLA from the channel. (Required except from the channel's source address.)"
     },
     "publicKey": {
       "$ref": "publicKey",
@@ -30,7 +30,7 @@
     },
     "close": {
       "type": "boolean",
-      "description": "Request to close the channel. If the channel has no XRP remaining or the destination address requests it, closes the channel immediately (returning unclaimed XRP to the source address). Otherwise, sets the channel to expire after settleDelay seconds have passed."
+      "description": "Request to close the channel. If the channel has no XLA remaining or the destination address requests it, closes the channel immediately (returning unclaimed XLA to the source address). Otherwise, sets the channel to expire after settleDelay seconds have passed."
     }
   },
   "required": ["channel"],
