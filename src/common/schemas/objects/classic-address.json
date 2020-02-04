@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "classicAddress",
-  "description": "A classic address (Account ID) for the XRP Ledger",
+  "description": "A classic address (Account ID) for the XLA Ledger",
   "type": "string",
   "format": "classicAddress",
   "link": "classic-address",

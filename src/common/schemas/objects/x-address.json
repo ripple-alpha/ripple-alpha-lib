@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "xAddress",
-  "description": "An XRP Ledger address in X-address format",
+  "description": "An XLA Ledger address in X-address format",
   "type": "string",
   "format": "xAddress",
   "link": "x-address",

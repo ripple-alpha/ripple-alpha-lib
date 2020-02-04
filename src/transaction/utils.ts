@@ -209,10 +209,10 @@ function prepareTransaction(txJSON: TransactionJSON, api: RippleAPI,
       instructions.signersCount + 1
     if (instructions.fee !== undefined) {
       const fee = new BigNumber(instructions.fee)
-      if (fee.isGreaterThan(api._maxFeeXRP)) {
-        return Promise.reject(new ValidationError(`Fee of ${fee.toString(10)} XRP exceeds ` +
-          `max of ${api._maxFeeXRP} XRP. To use this fee, increase ` +
-          '`maxFeeXRP` in the RippleAPI constructor.'))
+      if (fee.isGreaterThan(api._maxFeeXLA)) {
+        return Promise.reject(new ValidationError(`Fee of ${fee.toString(10)} XLA exceeds ` +
+          `max of ${api._maxFeeXLA} XLA. To use this fee, increase ` +
+          '`maxFeeXLA` in the RippleAPI constructor.'))
       }
       newTxJSON.Fee = scaleValue(common.xrpToDrops(instructions.fee), multiplier)
       return Promise.resolve()
@@ -226,9 +226,9 @@ function prepareTransaction(txJSON: TransactionJSON, api: RippleAPI,
             (cushion * feeRef * (32 + Math.floor(
               Buffer.from(newTxJSON.Fulfillment, 'hex').length / 16)))
         const feeDrops = common.xrpToDrops(fee)
-        const maxFeeXRP = instructions.maxFee ?
-          BigNumber.min(api._maxFeeXRP, instructions.maxFee) : api._maxFeeXRP
-        const maxFeeDrops = common.xrpToDrops(maxFeeXRP)
+        const maxFeeXLA = instructions.maxFee ?
+          BigNumber.min(api._maxFeeXLA, instructions.maxFee) : api._maxFeeXLA
+        const maxFeeDrops = common.xrpToDrops(maxFeeXLA)
         const normalFee = scaleValue(feeDrops, multiplier, extraFee)
         newTxJSON.Fee = BigNumber.min(normalFee, maxFeeDrops).toString(10)
 

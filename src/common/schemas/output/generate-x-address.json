@@ -5,7 +5,7 @@
   "properties": {
     "xAddress": {
       "$ref": "xAddress",
-      "description": "A randomly generated XRP Ledger address in X-address format."
+      "description": "A randomly generated XLA Ledger address in X-address format."
     },
     "secret": {
       "type": "string",

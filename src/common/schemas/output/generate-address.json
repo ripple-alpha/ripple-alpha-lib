@@ -5,11 +5,11 @@
   "properties": {
     "xAddress": {
       "$ref": "xAddress",
-      "description": "A randomly generated XRP Ledger address in X-address format."
+      "description": "A randomly generated XLA Ledger address in X-address format."
     },
     "classicAddress": {
       "$ref": "classicAddress",
-      "description": "A randomly generated XRP Ledger Account ID (classic address)."
+      "description": "A randomly generated XLA Ledger Account ID (classic address)."
     },
     "address": {
       "$ref": "classicAddress",

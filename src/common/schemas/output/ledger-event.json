@@ -4,9 +4,9 @@
   "description": "A ledger event message",
   "type": "object",
   "properties": {
-    "baseFeeXRP": {
+    "baseFeeXLA": {
       "$ref": "value",
-      "description": "Base fee, in XRP."
+      "description": "Base fee, in XLA."
     },
     "ledgerHash": {
       "$ref": "hash256",
@@ -21,11 +21,11 @@
       "format": "date-time",
       "description": "The time at which this ledger closed."
     },
-    "reserveBaseXRP": {
+    "reserveBaseXLA": {
       "$ref": "value",
-      "description": "The minimum reserve, in XRP, that is required for an account."
+      "description": "The minimum reserve, in XLA, that is required for an account."
     },
-    "reserveIncrementXRP": {
+    "reserveIncrementXLA": {
       "$ref": "value",
       "description": "The increase in account reserve that is added for each item the account owns, such as offers or trust lines."
     },
@@ -40,7 +40,7 @@
     }
   },
   "addtionalProperties": false,
-  "required": ["baseFeeXRP", "ledgerHash", "ledgerTimestamp",
-    "reserveBaseXRP", "reserveIncrementXRP", "transactionCount",
+  "required": ["baseFeeXLA", "ledgerHash", "ledgerTimestamp",
+    "reserveBaseXLA", "reserveIncrementXLA", "transactionCount",
     "ledgerVersion", "validatedLedgerVersions"]
 }

@@ -23,10 +23,10 @@ export type GetServerInfoResponse = {
   serverState: string,
   validatedLedger: {
     age: number,
-    baseFeeXRP: string,
+    baseFeeXLA: string,
     hash: string,
-    reserveBaseXRP: string,
-    reserveIncrementXRP: string,
+    reserveBaseXLA: string,
+    reserveIncrementXLA: string,
     ledgerVersion: number
   },
   validationQuorum: number,
@@ -46,17 +46,17 @@ function getServerInfo(this: RippleAPI): Promise<GetServerInfoResponse> {
     renameKeys(info, {hostid: 'hostID'})
     if (info.validatedLedger) {
       renameKeys(info.validatedLedger, {
-        baseFeeXrp: 'baseFeeXRP',
-        reserveBaseXrp: 'reserveBaseXRP',
-        reserveIncXrp: 'reserveIncrementXRP',
+        baseFeeXrp: 'baseFeeXLA',
+        reserveBaseXrp: 'reserveBaseXLA',
+        reserveIncXrp: 'reserveIncrementXLA',
         seq: 'ledgerVersion'
       })
-      info.validatedLedger.baseFeeXRP =
-        info.validatedLedger.baseFeeXRP.toString()
-      info.validatedLedger.reserveBaseXRP =
-        info.validatedLedger.reserveBaseXRP.toString()
-      info.validatedLedger.reserveIncrementXRP =
-        info.validatedLedger.reserveIncrementXRP.toString()
+      info.validatedLedger.baseFeeXLA =
+        info.validatedLedger.baseFeeXLA.toString()
+      info.validatedLedger.reserveBaseXLA =
+        info.validatedLedger.reserveBaseXLA.toString()
+      info.validatedLedger.reserveIncrementXLA =
+        info.validatedLedger.reserveIncrementXLA.toString()
     }
     return info
   })
@@ -79,8 +79,8 @@ async function getFee(
   const baseFeeXrp = new BigNumber(serverInfo.validated_ledger.base_fee_xrp)
   let fee = baseFeeXrp.times(serverInfo.load_factor).times(cushion)
 
-  // Cap fee to `this._maxFeeXRP`
-  fee = BigNumber.min(fee, this._maxFeeXRP)
+  // Cap fee to `this._maxFeeXLA`
+  fee = BigNumber.min(fee, this._maxFeeXLA)
   // Round fee to 6 decimal places
   return (new BigNumber(fee.toFixed(6))).toString(10)
 }

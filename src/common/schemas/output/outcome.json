@@ -15,7 +15,7 @@
     },
     "fee": {
       "$ref": "value",
-      "description": "The XRP fee that was charged for the transaction."
+      "description": "The XLA fee that was charged for the transaction."
     },
     "deliveredAmount": {
       "$ref": "amount",
@@ -25,7 +25,7 @@
       "type": "object",
       "additionalProperties": {
         "type": "array",
-        "description": "Key is the XRP Ledger address; value is an array of signed amounts representing changes of balances for that address.",
+        "description": "Key is the XLA Ledger address; value is an array of signed amounts representing changes of balances for that address.",
         "items": {"$ref": "balance"}
       }
     },
@@ -33,7 +33,7 @@
       "type": "object",
       "additionalProperties": {
         "type": "array",
-        "description": "Key is the maker's XRP Ledger address; value is an array of changes",
+        "description": "Key is the maker's XLA Ledger address; value is an array of changes",
         "items": {"$ref": "orderChange"}
       }
     },

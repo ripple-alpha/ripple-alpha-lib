@@ -171,7 +171,7 @@ function checkTxSerialization(serialized: string, tx: TransactionJSON): void {
 }
 
 /**
- *  Check that a given transaction fee does not exceed maxFeeXRP (in drops).
+ *  Check that a given transaction fee does not exceed maxFeeXLA (in drops).
  *
  *  See https://xrpl.org/rippleapi-reference.html#parameters
  *
@@ -182,11 +182,11 @@ function checkTxSerialization(serialized: string, tx: TransactionJSON): void {
  */
 function checkFee(api: RippleAPI, txFee: string): void {
   const fee = new BigNumber(txFee)
-  const maxFeeDrops = xrpToDrops(api._maxFeeXRP)
+  const maxFeeDrops = xrpToDrops(api._maxFeeXLA)
   if (fee.isGreaterThan(maxFeeDrops)) {
     throw new utils.common.errors.ValidationError(
       `"Fee" should not exceed "${maxFeeDrops}". ` +
-      'To use a higher fee, set `maxFeeXRP` in the RippleAPI constructor.'
+      'To use a higher fee, set `maxFeeXLA` in the RippleAPI constructor.'
     )
   }
 }

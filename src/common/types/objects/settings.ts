@@ -14,7 +14,7 @@ export type FormattedSettings = {
   defaultRipple?: boolean,
   depositAuth?: boolean,
   disableMasterKey?: boolean,
-  disallowIncomingXRP?: boolean,
+  disallowIncomingXLA?: boolean,
   domain?: string,
   emailHash?: string|null,
   walletLocator?: string|null,

@@ -8,7 +8,7 @@ export type GetAccountInfoOptions = {
 
 export type FormattedGetAccountInfoResponse = {
   sequence: number,
-  xrpBalance: string,
+  xlaBalance: string,
   ownerCount: number,
   previousInitiatedTransactionID: string,
   previousAffectingTransactionID: string,
@@ -21,7 +21,7 @@ function formatAccountInfo(
   const data = response.account_data
   return removeUndefined({
     sequence: data.Sequence,
-    xrpBalance: dropsToXrp(data.Balance),
+    xlaBalance: dropsToXrp(data.Balance),
     ownerCount: data.OwnerCount,
     previousInitiatedTransactionID: data.AccountTxnID,
     previousAffectingTransactionID: data.PreviousTxnID,
