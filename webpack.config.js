@@ -15,7 +15,7 @@ function getDefaultConfiguration() {
   output: {
     library: 'ripple',
     path: path.join(__dirname, 'build/'),
-    filename: `ripple-lib.default.js`,
+    filename: `ripple-alpha-lib.default.js`,
   },
   plugins: [
     new webpack.NormalModuleReplacementPlugin(/^ws$/, './wswrapper'),

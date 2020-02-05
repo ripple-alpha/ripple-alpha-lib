@@ -8,7 +8,7 @@ export type EscrowCancellation = {
   owner: string,
   escrowSequence: number,
 
-  // TODO: This ripple-lib memo format should be deprecated in favor of rippled's format.
+  // TODO: This ripple-alpha-lib memo format should be deprecated in favor of rippled's format.
   // If necessary, expose a public method for converting between the two formats.
   memos?: Array<Memo>
 }

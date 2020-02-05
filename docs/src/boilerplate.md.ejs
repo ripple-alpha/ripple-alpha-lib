@@ -3,7 +3,7 @@
 Use the following [boilerplate code](https://en.wikipedia.org/wiki/Boilerplate_code) to wrap your custom code using RippleAPI.
 
 ```javascript
-const RippleAPI = require('ripple-lib').RippleAPI;
+const RippleAPI = require('ripple-alpha-lib').RippleAPI;
 
 const api = new RippleAPI({
   server: 'wss://s1.ripplealpha.com:6005' // Public rippled server hosted by Ripple, Inc.
@@ -55,8 +55,8 @@ If you omit the `server` parameter, RippleAPI operates [offline](#offline-functi
 
 1. Install [Node.js](https://nodejs.org) and [Yarn](https://yarnpkg.com/en/docs/install). Most Linux distros have a package for Node.js; check that it's the version you want.
 2. Use yarn to install RippleAPI:
-      `yarn add ripple-lib`
+      `yarn add ripple-alpha-lib`
 
-After you have installed ripple-lib, you can create scripts using the [boilerplate](#boilerplate) and run them using the Node.js executable, typically named `node`:
+After you have installed ripple-alpha-lib, you can create scripts using the [boilerplate](#boilerplate) and run them using the Node.js executable, typically named `node`:
 
       `node script.js`

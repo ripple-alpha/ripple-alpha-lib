@@ -12,7 +12,7 @@ Bits that are not defined as flags MUST be 0.
 
 Applies globally to all transactions.
 
-`txFlags.Universal.FullyCanonicalSig`: Require a fully-canonical signature. When preparing transactions, ripple-lib enables this flag for you.
+`txFlags.Universal.FullyCanonicalSig`: Require a fully-canonical signature. When preparing transactions, ripple-alpha-lib enables this flag for you.
 
 ### Payment Flags
 
@@ -30,7 +30,7 @@ Applies globally to all transactions.
 
 `txFlags.OfferCreate.FillOrKill`: Treat the offer as a Fill or Kill order.
 
-`txFlags.OfferCreate.Sell`: Treat the offer as a Sell order. With `order.direction = 'sell'`, exchange the entire `order.quantity`, even if it means obtaining more than the `order.totalPrice` amount in exchange. If using `prepareOrder`, ripple-lib sets this flag for you.
+`txFlags.OfferCreate.Sell`: Treat the offer as a Sell order. With `order.direction = 'sell'`, exchange the entire `order.quantity`, even if it means obtaining more than the `order.totalPrice` amount in exchange. If using `prepareOrder`, ripple-alpha-lib sets this flag for you.
 
 ### TrustSet Flags
 

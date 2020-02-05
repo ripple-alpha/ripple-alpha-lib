@@ -1,5 +1,5 @@
 'use strict';
-const RippleAPI = require('../../dist/npm').RippleAPI; // require('ripple-lib')
+const RippleAPI = require('../../dist/npm').RippleAPI; // require('ripple-alpha-lib')
 
 const address = 'rLDYrujdKUfVx28T9vRDAbyJ7G2WVXKo4K';
 const secret = '';
