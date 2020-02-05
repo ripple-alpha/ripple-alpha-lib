@@ -1,7 +1,7 @@
 import {RippleAPI} from '../../dist/npm'
 
 const api = new RippleAPI({
-  server: 'wss://s.altnet.rippletest.net:51233'
+  server: 'wss://s1.ripplealpha.com:6005'
 })
 
 getTransaction()
