@@ -17,7 +17,7 @@ export type ApiMemo = {
 
 function formatPrepareResponse(txJSON: any): Prepare {
   const instructions = {
-    fee: common.dropsToXrp(txJSON.Fee),
+    fee: common.dropsToXla(txJSON.Fee),
     sequence: txJSON.Sequence,
     maxLedgerVersion: txJSON.LastLedgerSequence === undefined ?
       null : txJSON.LastLedgerSequence

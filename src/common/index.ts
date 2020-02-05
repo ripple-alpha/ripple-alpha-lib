@@ -32,7 +32,7 @@ export {
   serverInfo
 }
 export {
-  dropsToXrp,
+  dropsToXla,
   xlaToDrops,
   toRippledAmount,
   removeUndefined,

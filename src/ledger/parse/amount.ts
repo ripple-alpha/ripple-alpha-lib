@@ -6,7 +6,7 @@ function parseAmount(amount: RippledAmount): Amount {
   if (typeof amount === 'string') {
     return {
       currency: 'XLA',
-      value: common.dropsToXrp(amount)
+      value: common.dropsToXla(amount)
     }
   }
   return {

@@ -90,7 +90,7 @@
   - [verifyPaymentChannelClaim](#verifypaymentchannelclaim)
   - [computeLedgerHash](#computeledgerhash)
   - [xlaToDrops](#xlatodrops)
-  - [dropsToXrp](#dropstoxrp)
+  - [dropsToXla](#dropstoxla)
   - [iso8601ToRippleTime](#iso8601torippletime)
   - [rippleTimeToISO8601](#rippletimetoiso8601)
   - [txFlags](#txflags)
@@ -5971,9 +5971,9 @@ return api.xlaToDrops('1');
 '1000000'
 ```
 
-## dropsToXrp
+## dropsToXla
 
-`dropsToXrp(drops: string | BigNumber): string`
+`dropsToXla(drops: string | BigNumber): string`
 
 Converts an amount of drops to XLA. 1 drop = 0.000001 XLA, so 1 XLA = 1,000,000 drops. This method is useful when converting amounts from the rippled API, which describes XLA amounts in drops.
 
@@ -5988,7 +5988,7 @@ A string representing an equivalent amount of XLA.
 ### Example
 
 ```javascript
-return api.dropsToXrp('1');
+return api.dropsToXla('1');
 ```
 
 ```json

@@ -111,7 +111,7 @@ function parseOutcome(tx: any): any|undefined {
   return common.removeUndefined({
     result: tx.meta.TransactionResult,
     timestamp: parseTimestamp(tx.date),
-    fee: common.dropsToXrp(tx.Fee),
+    fee: common.dropsToXla(tx.Fee),
     balanceChanges: balanceChanges,
     orderbookChanges: orderbookChanges,
     channelChanges: channelChanges,

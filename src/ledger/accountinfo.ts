@@ -1,4 +1,4 @@
-import {validate, removeUndefined, dropsToXrp, ensureClassicAddress} from '../common'
+import {validate, removeUndefined, dropsToXla, ensureClassicAddress} from '../common'
 import {RippleAPI} from '..'
 import {AccountInfoResponse} from '../common/types/commands/account_info'
 
@@ -21,7 +21,7 @@ function formatAccountInfo(
   const data = response.account_data
   return removeUndefined({
     sequence: data.Sequence,
-    xlaBalance: dropsToXrp(data.Balance),
+    xlaBalance: dropsToXla(data.Balance),
     ownerCount: data.OwnerCount,
     previousInitiatedTransactionID: data.AccountTxnID,
     previousAffectingTransactionID: data.PreviousTxnID,

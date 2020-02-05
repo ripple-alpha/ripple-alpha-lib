@@ -6,7 +6,7 @@ import {
   toRippledAmount,
   errors,
   xlaToDrops,
-  dropsToXrp
+  dropsToXla
 } from '../common'
 import {Connection} from '../common'
 import parsePathfind from './parse/pathfind'
@@ -33,7 +33,7 @@ function requestPathFind(connection: Connection, pathfind: PathFind
     {
       // This is converted back to drops by toRippledAmount()
       value: pathfind.destination.amount.currency === 'XLA' ?
-        dropsToXrp('-1') : '-1'
+        dropsToXla('-1') : '-1'
     },
     pathfind.destination.amount
   )

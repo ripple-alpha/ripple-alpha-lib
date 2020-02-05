@@ -13,13 +13,13 @@ function isValidSecret(secret: string): boolean {
   }
 }
 
-function dropsToXrp(drops: BigNumber.Value): string {
+function dropsToXla(drops: BigNumber.Value): string {
   if (typeof drops === 'string') {
     if (!drops.match(/^-?[0-9]*\.?[0-9]*$/)) {
-      throw new ValidationError(`dropsToXrp: invalid value '${drops}',` +
+      throw new ValidationError(`dropsToXla: invalid value '${drops}',` +
         ` should be a number matching (^-?[0-9]*\\.?[0-9]*$).`)
     } else if (drops === '.') {
-      throw new ValidationError(`dropsToXrp: invalid value '${drops}',` +
+      throw new ValidationError(`dropsToXla: invalid value '${drops}',` +
         ` should be a BigNumber or string-encoded number.`)
     }
   }
@@ -31,7 +31,7 @@ function dropsToXrp(drops: BigNumber.Value): string {
 
   // drops are only whole units
   if (drops.includes('.')) {
-    throw new ValidationError(`dropsToXrp: value '${drops}' has` +
+    throw new ValidationError(`dropsToXla: value '${drops}' has` +
       ` too many decimal places.`)
   }
 
@@ -39,7 +39,7 @@ function dropsToXrp(drops: BigNumber.Value): string {
   // validated above. This just ensures BigNumber did not do
   // something unexpected.
   if (!drops.match(/^-?[0-9]+$/)) {
-    throw new ValidationError(`dropsToXrp: failed sanity check -` +
+    throw new ValidationError(`dropsToXla: failed sanity check -` +
       ` value '${drops}',` +
       ` does not match (^-?[0-9]+$).`)
   }
@@ -152,7 +152,7 @@ function iso8601ToRippleTime(iso8601: string): number {
 }
 
 export {
-  dropsToXrp,
+  dropsToXla,
   xlaToDrops,
   toRippledAmount,
   convertKeysFromSnakeCaseToCamelCase,

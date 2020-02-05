@@ -27,7 +27,7 @@ function getXRPBalance(connection: Connection, address: string,
     ledger_index: ledgerVersion
   }
   return connection.request(request).then(data =>
-    common.dropsToXrp(data.account_data.Balance))
+    common.dropsToXla(data.account_data.Balance))
 }
 
 // If the marker is omitted from a response, you have reached the end
