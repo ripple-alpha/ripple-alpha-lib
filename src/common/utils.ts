@@ -47,43 +47,43 @@ function dropsToXla(drops: BigNumber.Value): string {
   return (new BigNumber(drops)).dividedBy(1000000.0).toString(10)
 }
 
-function xlaToDrops(xrp: BigNumber.Value): string {
-  if (typeof xrp === 'string') {
-    if (!xrp.match(/^-?[0-9]*\.?[0-9]*$/)) {
-      throw new ValidationError(`xlaToDrops: invalid value '${xrp}',` +
+function xlaToDrops(xla: BigNumber.Value): string {
+  if (typeof xla === 'string') {
+    if (!xla.match(/^-?[0-9]*\.?[0-9]*$/)) {
+      throw new ValidationError(`xlaToDrops: invalid value '${xla}',` +
         ` should be a number matching (^-?[0-9]*\\.?[0-9]*$).`)
-    } else if (xrp === '.') {
-      throw new ValidationError(`xlaToDrops: invalid value '${xrp}',` +
+    } else if (xla === '.') {
+      throw new ValidationError(`xlaToDrops: invalid value '${xla}',` +
         ` should be a BigNumber or string-encoded number.`)
     }
   }
 
   // Important: specify base 10 to avoid exponential notation, e.g. '1e-7'.
-  xrp = (new BigNumber(xrp)).toString(10)
+  xla = (new BigNumber(xla)).toString(10)
 
   // This should never happen; the value has already been
   // validated above. This just ensures BigNumber did not do
   // something unexpected.
-  if (!xrp.match(/^-?[0-9.]+$/)) {
+  if (!xla.match(/^-?[0-9.]+$/)) {
     throw new ValidationError(`xlaToDrops: failed sanity check -` +
-      ` value '${xrp}',` +
+      ` value '${xla}',` +
       ` does not match (^-?[0-9.]+$).`)
   }
 
-  const components = xrp.split('.')
+  const components = xla.split('.')
   if (components.length > 2) {
     throw new ValidationError(`xlaToDrops: failed sanity check -` +
-      ` value '${xrp}' has` +
+      ` value '${xla}' has` +
       ` too many decimal points.`)
   }
 
   const fraction = components[1] || '0'
   if (fraction.length > 6) {
-    throw new ValidationError(`xlaToDrops: value '${xrp}' has` +
+    throw new ValidationError(`xlaToDrops: value '${xla}' has` +
       ` too many decimal places.`)
   }
 
-  return (new BigNumber(xrp)).times(1000000.0).integerValue(BigNumber.ROUND_FLOOR).toString(10)
+  return (new BigNumber(xla)).times(1000000.0).integerValue(BigNumber.ROUND_FLOOR).toString(10)
 }
 
 function toRippledAmount(amount: Amount): RippledAmount {

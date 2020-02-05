@@ -869,7 +869,7 @@ For full details, see [rippled Subscriptions](https://ripple.com/build/rippled-a
 
 Returns the response from invoking the specified command, with the specified options, on the connected rippled server.
 
-Most commands return data for the `current` (in-progress, open) ledger by default. Do not rely on this. Always specify a ledger version in your request. In the example below, the 'validated' ledger is requested, which is the most recent ledger that has been validated by the whole network. See [Specifying Ledgers](https://xrpl.org/basic-data-types.html#specifying-ledgers).
+Most commands return data for the `current` (in-progress, open) ledger by default. Do not rely on this. Always specify a ledger version in your request. In the example below, the 'validated' ledger is requested, which is the most recent ledger that has been validated by the whole network.
 
 ### Return Value
 
@@ -5949,13 +5949,13 @@ return api.computeLedgerHash(ledger);
 
 ## xlaToDrops
 
-`xlaToDrops(xrp: string | BigNumber): string`
+`xlaToDrops(xla: string | BigNumber): string`
 
 Converts an XLA amount to drops. 1 XLA = 1,000,000 drops, so 1 drop = 0.000001 XLA. This method is useful when converting amounts for use with the rippled API, which requires XLA amounts to be specified in drops.
 
 ### Parameters
 
-`xrp`: A string or BigNumber representing an amount of XLA. If `xrp` is a string, it may start with `-`, must contain at least one number, and may contain up to one `.`. This method throws a `ValidationError` for invalid input.
+`xla`: A string or BigNumber representing an amount of XLA. If `xla` is a string, it may start with `-`, must contain at least one number, and may contain up to one `.`. This method throws a `ValidationError` for invalid input.
 
 ### Return Value
 
