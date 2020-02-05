@@ -7,7 +7,7 @@ const ValidationError = utils.common.errors.ValidationError
 import {Instructions, Prepare, TransactionJSON} from './types'
 import {Amount, Adjustment, MaxAdjustment,
   MinAdjustment, Memo} from '../common/types/objects'
-import {xrpToDrops} from '../common'
+import {xlaToDrops} from '../common'
 import {RippleAPI} from '..'
 import {getClassicAccountAndTag, ClassicAccountAndTag} from './utils'
 
@@ -78,7 +78,7 @@ function createMaximalAmount(amount: Amount): Amount {
   if (amount.currency === 'XLA') {
     maxValue = maxXRPValue
   } else if (amount.currency === 'drops') {
-    maxValue = xrpToDrops(maxXRPValue)
+    maxValue = xlaToDrops(maxXRPValue)
   } else {
     maxValue = maxIOUValue
   }

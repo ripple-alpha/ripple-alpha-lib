@@ -1,5 +1,5 @@
 import * as utils from './utils'
-import {validate, iso8601ToRippleTime, xrpToDrops} from '../common'
+import {validate, iso8601ToRippleTime, xlaToDrops} from '../common'
 const ValidationError = utils.common.errors.ValidationError
 import {Instructions, Prepare, TransactionJSON} from './types'
 import {Memo} from '../common/types/objects'
@@ -23,7 +23,7 @@ function createEscrowCreationTransaction(account: string,
     TransactionType: 'EscrowCreate',
     Account: account,
     Destination: payment.destination,
-    Amount: xrpToDrops(payment.amount)
+    Amount: xlaToDrops(payment.amount)
   }
 
   if (payment.condition !== undefined) {

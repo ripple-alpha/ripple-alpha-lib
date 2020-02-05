@@ -5,7 +5,7 @@ import binaryCodec from 'ripple-binary-codec'
 import {computeBinaryTransactionHash} from '../common/hashes'
 import {SignOptions, KeyPair, TransactionJSON} from './types'
 import {BigNumber} from 'bignumber.js'
-import {xrpToDrops} from '../common'
+import {xlaToDrops} from '../common'
 import {RippleAPI} from '..'
 const validate = utils.common.validate 
 
@@ -182,7 +182,7 @@ function checkTxSerialization(serialized: string, tx: TransactionJSON): void {
  */
 function checkFee(api: RippleAPI, txFee: string): void {
   const fee = new BigNumber(txFee)
-  const maxFeeDrops = xrpToDrops(api._maxFeeXLA)
+  const maxFeeDrops = xlaToDrops(api._maxFeeXLA)
   if (fee.isGreaterThan(maxFeeDrops)) {
     throw new utils.common.errors.ValidationError(
       `"Fee" should not exceed "${maxFeeDrops}". ` +

@@ -5,7 +5,7 @@ import {
   validate,
   toRippledAmount,
   errors,
-  xrpToDrops,
+  xlaToDrops,
   dropsToXrp
 } from '../common'
 import {Connection} from '../common'
@@ -110,7 +110,7 @@ function filterSourceFundsLowPaths(pathfind: PathFind,
       }
       const pathfindSourceAmountValue = new BigNumber(
         pathfind.source.amount.currency === 'XLA' ?
-        xrpToDrops(pathfind.source.amount.value) :
+        xlaToDrops(pathfind.source.amount.value) :
         pathfind.source.amount.value)
       const altSourceAmountValue = new BigNumber(
         typeof alt.source_amount === 'string' ?

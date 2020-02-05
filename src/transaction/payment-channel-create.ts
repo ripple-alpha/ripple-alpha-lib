@@ -1,5 +1,5 @@
 import * as utils from './utils'
-import {validate, iso8601ToRippleTime, xrpToDrops} from '../common'
+import {validate, iso8601ToRippleTime, xlaToDrops} from '../common'
 import {Instructions, Prepare, TransactionJSON} from './types'
 import {RippleAPI} from '..'
 
@@ -19,7 +19,7 @@ function createPaymentChannelCreateTransaction(account: string,
   const txJSON: any = {
     Account: account,
     TransactionType: 'PaymentChannelCreate',
-    Amount: xrpToDrops(paymentChannel.amount),
+    Amount: xlaToDrops(paymentChannel.amount),
     Destination: paymentChannel.destination,
     SettleDelay: paymentChannel.settleDelay,
     PublicKey: paymentChannel.publicKey.toUpperCase()

@@ -1,7 +1,7 @@
 import * as utils from './utils'
 const ValidationError = utils.common.errors.ValidationError
 const claimFlags = utils.common.txFlags.PaymentChannelClaim
-import {validate, xrpToDrops} from '../common'
+import {validate, xlaToDrops} from '../common'
 import {Instructions, Prepare, TransactionJSON} from './types'
 import {RippleAPI} from '..'
 
@@ -26,10 +26,10 @@ function createPaymentChannelClaimTransaction(account: string,
   }
 
   if (claim.balance !== undefined) {
-    txJSON.Balance = xrpToDrops(claim.balance)
+    txJSON.Balance = xlaToDrops(claim.balance)
   }
   if (claim.amount !== undefined) {
-    txJSON.Amount = xrpToDrops(claim.amount)
+    txJSON.Amount = xlaToDrops(claim.amount)
   }
 
   if (Boolean(claim.signature) !== Boolean(claim.publicKey)) {

@@ -33,7 +33,7 @@ export {
 }
 export {
   dropsToXrp,
-  xrpToDrops,
+  xlaToDrops,
   toRippledAmount,
   removeUndefined,
   convertKeysFromSnakeCaseToCamelCase,

@@ -1,5 +1,5 @@
 import * as utils from './utils'
-import {validate, iso8601ToRippleTime, xrpToDrops} from '../common'
+import {validate, iso8601ToRippleTime, xlaToDrops} from '../common'
 import {Instructions, Prepare, TransactionJSON} from './types'
 import {RippleAPI} from '..'
 
@@ -16,7 +16,7 @@ function createPaymentChannelFundTransaction(account: string,
     Account: account,
     TransactionType: 'PaymentChannelFund',
     Channel: fund.channel,
-    Amount: xrpToDrops(fund.amount)
+    Amount: xlaToDrops(fund.amount)
   }
 
   if (fund.expiration !== undefined) {

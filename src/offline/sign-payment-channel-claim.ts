@@ -1,7 +1,7 @@
 import * as common from '../common'
 import keypairs from 'ripple-keypairs'
 import binary from 'ripple-binary-codec'
-const {validate, xrpToDrops} = common
+const {validate, xlaToDrops} = common
 
 function signPaymentChannelClaim(channel: string, amount: string,
   privateKey: string
@@ -10,7 +10,7 @@ function signPaymentChannelClaim(channel: string, amount: string,
 
   const signingData = binary.encodeForSigningClaim({
     channel: channel,
-    amount: xrpToDrops(amount)
+    amount: xlaToDrops(amount)
   })
   return keypairs.sign(signingData, privateKey)
 }

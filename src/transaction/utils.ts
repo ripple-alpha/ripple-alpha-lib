@@ -214,7 +214,7 @@ function prepareTransaction(txJSON: TransactionJSON, api: RippleAPI,
           `max of ${api._maxFeeXLA} XLA. To use this fee, increase ` +
           '`maxFeeXLA` in the RippleAPI constructor.'))
       }
-      newTxJSON.Fee = scaleValue(common.xrpToDrops(instructions.fee), multiplier)
+      newTxJSON.Fee = scaleValue(common.xlaToDrops(instructions.fee), multiplier)
       return Promise.resolve()
     }
     const cushion = api._feeCushion
@@ -225,10 +225,10 @@ function prepareTransaction(txJSON: TransactionJSON, api: RippleAPI,
           newTxJSON.Fulfillment === undefined) ? 0 :
             (cushion * feeRef * (32 + Math.floor(
               Buffer.from(newTxJSON.Fulfillment, 'hex').length / 16)))
-        const feeDrops = common.xrpToDrops(fee)
+        const feeDrops = common.xlaToDrops(fee)
         const maxFeeXLA = instructions.maxFee ?
           BigNumber.min(api._maxFeeXLA, instructions.maxFee) : api._maxFeeXLA
-        const maxFeeDrops = common.xrpToDrops(maxFeeXLA)
+        const maxFeeDrops = common.xlaToDrops(maxFeeXLA)
         const normalFee = scaleValue(feeDrops, multiplier, extraFee)
         newTxJSON.Fee = BigNumber.min(normalFee, maxFeeDrops).toString(10)
 

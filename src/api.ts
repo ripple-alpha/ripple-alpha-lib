@@ -3,7 +3,7 @@ import {
   Connection,
   errors,
   validate,
-  xrpToDrops,
+  xlaToDrops,
   dropsToXrp,
   rippleTimeToISO8601,
   iso8601ToRippleTime,
@@ -365,7 +365,7 @@ class RippleAPI extends EventEmitter {
   static isValidXAddress = isValidXAddress
   static isValidClassicAddress = isValidClassicAddress
 
-  xrpToDrops = xrpToDrops
+  xlaToDrops = xlaToDrops
   dropsToXrp = dropsToXrp
   rippleTimeToISO8601 = rippleTimeToISO8601
   iso8601ToRippleTime = iso8601ToRippleTime
