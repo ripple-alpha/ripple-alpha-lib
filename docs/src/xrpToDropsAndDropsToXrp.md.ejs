@@ -2,11 +2,11 @@
 
 `xrpToDrops(xrp: string | BigNumber): string`
 
-Converts an XRP amount to drops. 1 XRP = 1,000,000 drops, so 1 drop = 0.000001 XRP. This method is useful when converting amounts for use with the rippled API, which requires XRP amounts to be specified in drops.
+Converts an XLA amount to drops. 1 XLA = 1,000,000 drops, so 1 drop = 0.000001 XLA. This method is useful when converting amounts for use with the rippled API, which requires XLA amounts to be specified in drops.
 
 ### Parameters
 
-`xrp`: A string or BigNumber representing an amount of XRP. If `xrp` is a string, it may start with `-`, must contain at least one number, and may contain up to one `.`. This method throws a `ValidationError` for invalid input.
+`xrp`: A string or BigNumber representing an amount of XLA. If `xrp` is a string, it may start with `-`, must contain at least one number, and may contain up to one `.`. This method throws a `ValidationError` for invalid input.
 
 ### Return Value
 
@@ -26,7 +26,7 @@ return api.xrpToDrops('1');
 
 `dropsToXrp(drops: string | BigNumber): string`
 
-Converts an amount of drops to XRP. 1 drop = 0.000001 XRP, so 1 XRP = 1,000,000 drops. This method is useful when converting amounts from the rippled API, which describes XRP amounts in drops.
+Converts an amount of drops to XLA. 1 drop = 0.000001 XLA, so 1 XLA = 1,000,000 drops. This method is useful when converting amounts from the rippled API, which describes XLA amounts in drops.
 
 ### Parameters
 
@@ -34,7 +34,7 @@ Converts an amount of drops to XRP. 1 drop = 0.000001 XRP, so 1 XRP = 1,000,000 
 
 ### Return Value
 
-A string representing an equivalent amount of XRP.
+A string representing an equivalent amount of XLA.
 
 ### Example
 

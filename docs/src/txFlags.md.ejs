@@ -42,7 +42,7 @@ Applies globally to all transactions.
 
 `txFlags.TrustSet.ClearNoRipple`: Clears the No-[Rippling](https://developers.ripple.com/rippling.html) flag.
 
-`txFlags.TrustSet.SetFreeze`: Freeze the trustline. A non-XRP currency can be frozen by the exchange or gateway that issued it. XRP cannot be frozen.
+`txFlags.TrustSet.SetFreeze`: Freeze the trustline. A non-XLA currency can be frozen by the exchange or gateway that issued it. XLA cannot be frozen.
 
 `txFlags.TrustSet.ClearFreeze`: Unfreeze the trustline.
 
@@ -65,7 +65,7 @@ The AccountSet transaction type has some transaction flags, but their use is dis
 
 `txFlags.PaymentChannelClaim.Renew`: Clear the channel's Expiration time. (Expiration is different from the channel's immutable CancelAfter time.) Only the source address of the payment channel can use this flag.
 
-`txFlags.PaymentChannelClaim.Close`: Request to close the channel. Only the channel source and destination addresses can use this flag. This flag closes the channel immediately if it has no more XRP allocated to it after processing the current claim, or if the destination address uses it. If the source address uses this flag when the channel still holds XRP, this schedules the channel to close after SettleDelay seconds have passed. (Specifically, this sets the Expiration of the channel to the close time of the previous ledger plus the channel's SettleDelay time, unless the channel already has an earlier Expiration time.) If the destination address uses this flag when the channel still holds XRP, any XRP that remains after processing the claim is returned to the source address.
+`txFlags.PaymentChannelClaim.Close`: Request to close the channel. Only the channel source and destination addresses can use this flag. This flag closes the channel immediately if it has no more XLA allocated to it after processing the current claim, or if the destination address uses it. If the source address uses this flag when the channel still holds XLA, this schedules the channel to close after SettleDelay seconds have passed. (Specifically, this sets the Expiration of the channel to the close time of the previous ledger plus the channel's SettleDelay time, unless the channel already has an earlier Expiration time.) If the destination address uses this flag when the channel still holds XLA, any XLA that remains after processing the claim is returned to the source address.
 
 ### Other Transaction Types
 
