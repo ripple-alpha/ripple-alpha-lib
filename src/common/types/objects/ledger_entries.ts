@@ -171,7 +171,6 @@ export interface SignerListLedgerEntry {
   PreviousTxnLgrSeq: number
 }
 
-// see https://ripple.com/build/ledger-format/#ledger-object-types
 export type LedgerEntry =
   AccountRootLedgerEntry |
   AmendmentsLedgerEntry |

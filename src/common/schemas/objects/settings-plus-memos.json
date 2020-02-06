@@ -9,11 +9,11 @@
     },
     "depositAuth": {
       "type": "boolean",
-      "description": "Enable [Deposit Authorization](https://ripple.com/build/deposit-authorization/) on this account. If set, transactions cannot send value of any kind to this account unless the sender of those transactions is the account itself. (Requires the [DepositAuth amendment](https://ripple.com/build/known-amendments/#depositauth))"
+      "description": "Enable Deposit Authorization on this account. If set, transactions cannot send value of any kind to this account unless the sender of those transactions is the account itself. (Requires the DepositAuth amendment)"
     },
     "disableMasterKey": {
       "type": "boolean",
-      "description": "Disallows use of the master key to sign transactions for this account. To disable the master key, you must authorize the transaction by signing it with the master key pair. You cannot use a regular key pair or a multi-signature. You can re-enable the master key pair using a regular key pair or multi-signature. See [AccountSet](https://developers.ripple.com/accountset.html)."
+      "description": "Disallows use of the master key to sign transactions for this account. To disable the master key, you must authorize the transaction by signing it with the master key pair. You cannot use a regular key pair or a multi-signature. You can re-enable the master key pair using a regular key pair or multi-signature."
     },
     "disallowIncomingXLA": {
       "type": "boolean",

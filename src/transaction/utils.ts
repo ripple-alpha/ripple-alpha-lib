@@ -31,7 +31,6 @@ function formatPrepareResponse(txJSON: any): Prepare {
 /**
  *  Set the `tfFullyCanonicalSig` flag on a transaction.
  *
- *  See https://xrpl.org/transaction-malleability.html
  *
  *  @param {TransactionJSON} txJSON The transaction object to modify.
  *    This method will modify object's `Flags` property, or add it if it does not exist.

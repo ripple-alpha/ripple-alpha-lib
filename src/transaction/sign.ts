@@ -173,7 +173,6 @@ function checkTxSerialization(serialized: string, tx: TransactionJSON): void {
 /**
  *  Check that a given transaction fee does not exceed maxFeeXLA (in drops).
  *
- *  See https://xrpl.org/rippleapi-reference.html#parameters
  *
  *  @param {RippleAlphaAPI} api A RippleAlphaAPI instance.
  *  @param {string} txFee The transaction fee in drops, encoded as a string.

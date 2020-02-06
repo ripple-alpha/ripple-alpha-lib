@@ -303,7 +303,7 @@ A transaction type is specified by the strings in the first column in the table 
 
 Type | Description
 ---- | -----------
-[payment](#payment) | A `payment` transaction represents a transfer of value from one account to another. Depending on the [path](https://ripple.com/build/paths/) taken, additional exchanges of value may occur atomically to facilitate the payment.
+[payment](#payment) | A `payment` transaction represents a transfer of value from one account to another. additional exchanges of value may occur atomically to facilitate the payment.
 [order](#order) | An `order` transaction creates a limit order. It defines an intent to exchange currencies, and creates an order in the XLA Ledger's order book if not completely fulfilled when placed. Orders can be partially fulfilled.
 [orderCancellation](#order-cancellation) | An `orderCancellation` transaction cancels an order in the XLA Ledger's order book.
 [trustline](#trustline) | A `trustline` transactions creates or modifies a trust line between two accounts.
@@ -344,7 +344,7 @@ Every transaction must destroy a small amount of XLA as a cost to apply the tran
 
 You can choose the size of the fee you want to pay or let a default be used. You can get an estimate of the fee required to be included in the next ledger closing with the [getFee](#getfee) method.
 
-For a multi-signed transaction, ripple-alpha-lib automatically multiplies the `fee` by (1 + Number of Signatures Provided). For example, if you set `instructions.fee = '0.000020'` and `instructions.signersCount = 2`, the prepared transaction's `Fee` will be 20 drops × (1 + 2 Signatures) = 60 drops. See [Transaction Cost](https://developers.ripple.com/transaction-cost.html).
+For a multi-signed transaction, ripple-alpha-lib automatically multiplies the `fee` by (1 + Number of Signatures Provided). For example, if you set `instructions.fee = '0.000020'` and `instructions.signersCount = 2`, the prepared transaction's `Fee` will be 20 drops × (1 + 2 Signatures) = 60 drops.
 
 ## Transaction Instructions
 
@@ -538,8 +538,8 @@ See [Transaction Types](#transaction-types) for a description.
 Name | Type | Description
 ---- | ---- | -----------
 defaultRipple | boolean | *Optional* Enable rippling on this account’s trust lines by default.
-depositAuth | boolean | *Optional* Enable [Deposit Authorization](https://ripple.com/build/deposit-authorization/) on this account. If set, transactions cannot send value of any kind to this account unless the sender of those transactions is the account itself. (Requires the [DepositAuth amendment](https://ripple.com/build/known-amendments/#depositauth))
-disableMasterKey | boolean | *Optional* Disallows use of the master key to sign transactions for this account. To disable the master key, you must authorize the transaction by signing it with the master key pair. You cannot use a regular key pair or a multi-signature. You can re-enable the master key pair using a regular key pair or multi-signature. See [AccountSet](https://developers.ripple.com/accountset.html).
+depositAuth | boolean | *Optional* Enable Deposit Authorization on this account. If set, transactions cannot send value of any kind to this account unless the sender of those transactions is the account itself. (Requires the DepositAuth amendment)
+disableMasterKey | boolean | *Optional* Disallows use of the master key to sign transactions for this account. To disable the master key, you must authorize the transaction by signing it with the master key pair. You cannot use a regular key pair or a multi-signature. You can re-enable the master key pair using a regular key pair or multi-signature.
 disallowIncomingXLA | boolean | *Optional* Indicates that client applications should not send XLA to this account. Not enforced by ripple-alpha-core.
 domain | string | *Optional* The domain that owns this account, as a hexadecimal string representing the ASCII for the domain in lowercase.
 emailHash | string,null | *Optional* Hash of an email address to be used for generating an avatar image. Conventionally, clients use Gravatar to display this image. Use `null` to clear.
@@ -830,7 +830,7 @@ Type | Description
 `ledgerClosed` | Sent by the `ledger` stream when the consensus process declares a new fully validated ledger. The message identifies the ledger and provides some information about its contents.
 `validationReceived` | Sent by the `validations` stream when the server receives a validation message, also called a validation vote, regardless of whether the server trusts the validator.
 `manifestReceived` | Sent by the `manifests` stream when the server receives a manifest.
-`transaction` | Sent by many subscriptions including `transactions`, `transactions_proposed`, `accounts`, `accounts_proposed`, and `book` (Order Book). See [Transaction Streams](https://ripple.com/build/ripple-alpha-core-apis/#transaction-streams) for details.
+`transaction` | Sent by many subscriptions including `transactions`, `transactions_proposed`, `accounts`, `accounts_proposed`, and `book` (Order Book).
 `peerStatusChange` | (Admin-only) Reports a large amount of information on the activities of other `ripple-alpha-core` servers to which the server is connected.
 
 To register your listener function, use `connection.on(type, handler)`.
@@ -3903,8 +3903,8 @@ This method returns a promise that resolves with an array of objects with the fo
 Name | Type | Description
 ---- | ---- | -----------
 defaultRipple | boolean | *Optional* Enable rippling on this account’s trust lines by default.
-depositAuth | boolean | *Optional* Enable [Deposit Authorization](https://ripple.com/build/deposit-authorization/) on this account. If set, transactions cannot send value of any kind to this account unless the sender of those transactions is the account itself. (Requires the [DepositAuth amendment](https://ripple.com/build/known-amendments/#depositauth))
-disableMasterKey | boolean | *Optional* Disallows use of the master key to sign transactions for this account. To disable the master key, you must authorize the transaction by signing it with the master key pair. You cannot use a regular key pair or a multi-signature. You can re-enable the master key pair using a regular key pair or multi-signature. See [AccountSet](https://developers.ripple.com/accountset.html).
+depositAuth | boolean | *Optional* Enable Deposit Authorization on this account. If set, transactions cannot send value of any kind to this account unless the sender of those transactions is the account itself. (Requires the DepositAuth amendment)
+disableMasterKey | boolean | *Optional* Disallows use of the master key to sign transactions for this account. To disable the master key, you must authorize the transaction by signing it with the master key pair. You cannot use a regular key pair or a multi-signature. You can re-enable the master key pair using a regular key pair or multi-signature.
 disallowIncomingXLA | boolean | *Optional* Indicates that client applications should not send XLA to this account. Not enforced by ripple-alpha-core.
 domain | string | *Optional* The domain that owns this account, as a hexadecimal string representing the ASCII for the domain in lowercase.
 emailHash | string,null | *Optional* Hash of an email address to be used for generating an avatar image. Conventionally, clients use Gravatar to display this image. Use `null` to clear.
@@ -4462,7 +4462,7 @@ return api.getLedger()
 
 `parseAccountFlags(Flags: number): object`
 
-Parse an `AccountRoot` object's [`Flags`](https://developers.ripple.com/accountroot.html#accountroot-flags).
+Parse an `AccountRoot` object's `Flags`.
 
 ### Parameters
 
@@ -4508,7 +4508,7 @@ Notably, this is the preferred method for preparing a `DepositPreauth` transacti
 
 Name | Type | Description
 ---- | ---- | -----------
-transaction | [transaction](https://developers.ripple.com/transaction-formats.html) | The specification (JSON) of the transaction to prepare. Set `Account` to the address of the account that is creating the transaction. You may omit auto-fillable fields like `Fee`, `Flags`, and `Sequence` to have them set automatically.
+transaction | transaction | The specification (JSON) of the transaction to prepare. Set `Account` to the address of the account that is creating the transaction. You may omit auto-fillable fields like `Fee`, `Flags`, and `Sequence` to have them set automatically.
 instructions | [instructions](#transaction-instructions) | *Optional* Instructions for executing the transaction.
 
 ### Return Value
@@ -5407,7 +5407,7 @@ sign(txJSON: string, keypair: object, options: object): {signedTransaction: stri
 
 Sign a prepared transaction. The signed transaction must subsequently be [submitted](#submit).
 
-This method can sign any of [the transaction types supported by ripple-binary-codec](https://github.com/ripple/ripple-binary-codec/blob/cfcde79c19c359e9a0466d7bc3dc9a3aef47bb99/src/enums/definitions.json#L1637). When a new transaction type is added to the XLA Ledger, it will be unrecognized until `ripple-binary-codec` is updated. If you try to sign an unrecognized transaction type, this method throws an error similar to the following:
+This method can sign any of the transaction types supported by ripple-binary-codec. When a new transaction type is added to the XLA Ledger, it will be unrecognized until `ripple-binary-codec` is updated. If you try to sign an unrecognized transaction type, this method throws an error similar to the following:
 
 `Error: [TRANSACTION_TYPE] is not a valid name or ordinal for TransactionType`
 
@@ -5598,11 +5598,13 @@ Name | Type | Description
 ---- | ---- | -----------
 resultCode | string | Deprecated: Use `engine_result` instead.
 resultMessage | string | Deprecated: Use `engine_result_message` instead.
-engine_result | string | Code indicating the preliminary result of the transaction, for example `tesSUCCESS`. [List of transaction responses](https://developers.ripple.com/transaction-results.html)
+engine_result | string | Code indicating the preliminary result of the transaction, for example `tesSUCCESS`.
 engine_result_code | integer | Numeric code indicating the preliminary result of the transaction, directly correlated to `engine_result`
 engine_result_message | string | Human-readable explanation of the transaction's preliminary result.
 tx_blob | string | The complete transaction in hex string format.
-tx_json | [tx-json](https://developers.ripple.com/transaction-formats.html) | The complete transaction in JSON format.
+tx_json | object | The complete transaction in JSON format.
+*tx_json.* Account | [address](#address) | An account address on the XLA Ledger
+*tx_json.* TransactionType | string | 
 
 ### Example
 
@@ -6066,9 +6068,9 @@ Applies globally to all transactions.
 
 `txFlags.Payment.NoRippleDirect`: Do not use the default path; only use specified paths. This is intended to force the transaction to take arbitrage opportunities. Most clients do not need this.
 
-`txFlags.Payment.PartialPayment`: If the specified destination amount cannot be sent without spending more than the source maxAmount, reduce the received amount instead of failing outright. See [Partial Payments](https://developers.ripple.com/partial-payments.html) for more details.
+`txFlags.Payment.PartialPayment`: If the specified destination amount cannot be sent without spending more than the source maxAmount, reduce the received amount instead of failing outright.
 
-`txFlags.Payment.LimitQuality`: Only take paths where all the conversions have an input:output ratio that is equal or better than the ratio of `destination.amount`:`source.maxAmount`. See [Limit Quality](https://developers.ripple.com/payment.html#limit-quality) for details.
+`txFlags.Payment.LimitQuality`: Only take paths where all the conversions have an input:output ratio that is equal or better than the ratio of `destination.amount`:`source.maxAmount`.
 
 ### OfferCreate Flags
 
@@ -6086,9 +6088,9 @@ Applies globally to all transactions.
 
 `txFlags.TrustSet.NoRipple`:  Obsolete.
 
-`txFlags.TrustSet.SetNoRipple`: Blocks [rippling](https://developers.ripple.com/rippling.html) between two trustlines of the same currency, if this flag is set on both.
+`txFlags.TrustSet.SetNoRipple`: Blocks rippling between two trustlines of the same currency, if this flag is set on both.
 
-`txFlags.TrustSet.ClearNoRipple`: Clears the No-[Rippling](https://developers.ripple.com/rippling.html) flag.
+`txFlags.TrustSet.ClearNoRipple`: Clears the No-Rippling flag.
 
 `txFlags.TrustSet.SetFreeze`: Freeze the trustline. A non-XLA currency can be frozen by the exchange or gateway that issued it. XLA cannot be frozen.
 
@@ -6098,7 +6100,7 @@ Applies globally to all transactions.
 
 You can use the `prepareSettings` method to change your account flags. This method uses AccountSet flags internally.
 
-In the ripple-alpha-core API, Account Flags can be enabled and disabled with the SetFlag and ClearFlag parameters. See [AccountSet Flags](https://developers.ripple.com/accountset.html#accountset-flags).
+In the ripple-alpha-core API, Account Flags can be enabled and disabled with the SetFlag and ClearFlag parameters.
 
 The AccountSet transaction type has some transaction flags, but their use is discouraged.
 

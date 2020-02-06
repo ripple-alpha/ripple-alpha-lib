@@ -1,7 +1,6 @@
 
 import {txFlagIndices} from './txflags'
 
-// Ordering from https://developers.ripple.com/accountroot.html
 const accountRootFlags = {
 
   // lsfDefaultRipple:
