@@ -22,6 +22,8 @@ In an existing project (with `package.json`), install `ripple-alpha-lib`:
 ```
 $ yarn add ripple-alpha-lib
 ```
+## Documentation
++ **[RippleAlphaAPI Documentation](./docs/index.md)**
 
 ## Development
 
