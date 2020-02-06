@@ -5,7 +5,7 @@
   "properties": {
     "trace": {
       "type": "boolean",
-      "description": "If true, log rippled requests and responses to stdout."
+      "description": "If true, log ripple-alpha-core requests and responses to stdout."
     },
     "feeCushion": {
       "type": "number",
@@ -18,13 +18,13 @@
     },
     "server": {
       "type": "string",
-      "description": "URI for rippled websocket port to connect to. Must start with `wss://`, `ws://`, `wss+unix://`, or `ws+unix://`.",
+      "description": "URI for ripple-alpha-core websocket port to connect to. Must start with `wss://`, `ws://`, `wss+unix://`, or `ws+unix://`.",
       "format": "uri",
       "pattern": "^(wss?|wss?\\+unix)://"
     },
     "proxy": {
       "format": "uri",
-      "description": "URI for HTTP/HTTPS proxy to use to connect to the rippled server."
+      "description": "URI for HTTP/HTTPS proxy to use to connect to the ripple-alpha-core server."
     },
     "timeout": {
       "type": "integer",
@@ -37,7 +37,7 @@
     },
     "authorization": {
       "type": "string",
-      "description": "Username and password for HTTP basic authentication to the rippled server in the format **username:password**."
+      "description": "Username and password for HTTP basic authentication to the ripple-alpha-core server in the format **username:password**."
     },
     "trustedCertificates": {
       "type": "array",

@@ -6,7 +6,7 @@ Use the following [boilerplate code](https://en.wikipedia.org/wiki/Boilerplate_c
 const RippleAlphaAPI = require('ripple-alpha-lib').RippleAlphaAPI;
 
 const api = new RippleAlphaAPI({
-  server: 'wss://s1.ripplealpha.com:6005' // Public rippled server hosted by Ripple, Inc.
+  server: 'wss://s1.ripplealpha.com:6005' // Public ripple-alpha-core server hosted by Ripple Alpha Association.
 });
 api.on('error', (errorCode, errorMessage) => {
   console.log(errorCode + ': ' + errorMessage);

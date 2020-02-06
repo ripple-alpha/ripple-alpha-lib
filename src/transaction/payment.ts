@@ -142,7 +142,7 @@ function createPaymentTransaction(address: string, paymentArgument: Payment
   const sourceAmount = isMaxAdjustment(payment.source)
     ? payment.source.maxAmount : payment.source.amount
 
-  // when using destination.minAmount, rippled still requires that we set
+  // when using destination.minAmount, ripple-alpha-core still requires that we set
   // a destination amount in addition to DeliverMin. the destination amount
   // is interpreted as the maximum amount to send. we want to be sure to
   // send the whole source amount, so we set the destination amount to the
@@ -179,10 +179,9 @@ function createPaymentTransaction(address: string, paymentArgument: Payment
     txJSON.Flags |= paymentFlags.LimitQuality
   }
   if (!isXRPToXRPPayment(payment)) {
-    // Don't set SendMax for XRP->XRP payment
-    // temREDUNDANT_SEND_MAX removed in:
-    // https://github.com/ripple/rippled/commit/
-    //  c522ffa6db2648f1d8a987843e7feabf1a0b7de8/
+    // Don't set SendMax for XLA->XLA payment
+    // temREDUNDANT_SEND_MAX removed 
+
     if (payment.allowPartialPayment || isMinAdjustment(payment.destination)) {
       txJSON.Flags |= paymentFlags.PartialPayment
     }
@@ -197,7 +196,7 @@ function createPaymentTransaction(address: string, paymentArgument: Payment
       txJSON.Paths = JSON.parse(payment.paths)
     }
   } else if (payment.allowPartialPayment === true) {
-    throw new ValidationError('XRP to XRP payments cannot be partial payments')
+    throw new ValidationError('XLA to XLA payments cannot be partial payments')
   }
 
   return txJSON

@@ -11,7 +11,7 @@ export default async function getAccountObjects(
   options: GetAccountObjectsOptions = {}
 ): Promise<AccountObjectsResponse> {
   // Don't validate the options so that new types can be passed
-  // through to rippled. rippled validates requests.
+  // through to ripple-alpha-core. ripple-alpha-core validates requests.
 
   // Make Request
   const response = await this.request('account_objects', removeUndefined({

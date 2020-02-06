@@ -83,7 +83,7 @@ function addDirectXrpPath(paths: RippledPathsResponse, xrpBalance: string
 }
 
 function isRippledIOUAmount(amount: RippledAmount) {
-  // rippled XRP amounts are specified as decimal strings
+  // ripple-alpha-core XLA amounts are specified as decimal strings
   return (typeof amount === 'object') &&
     amount.currency && (amount.currency !== 'XLA')
 }

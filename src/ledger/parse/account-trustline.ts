@@ -5,7 +5,7 @@ import {
   FormattedTrustline
 } from '../../common/types/objects/trustlines'
 
-// rippled 'account_lines' returns a different format for
+// ripple-alpha-core 'account_lines' returns a different format for
 // trustlines than 'tx'
 function parseAccountTrustline(trustline: Trustline): FormattedTrustline {
   const specification = removeUndefined({
@@ -18,7 +18,7 @@ function parseAccountTrustline(trustline: Trustline): FormattedTrustline {
     frozen: trustline.freeze || undefined,
     authorized: trustline.authorized || undefined
   })
-  // rippled doesn't provide the counterparty's qualities
+  // ripple-alpha-core doesn't provide the counterparty's qualities
   const counterparty = removeUndefined({
     limit: trustline.limit_peer,
     ripplingDisabled: trustline.no_ripple_peer || undefined,

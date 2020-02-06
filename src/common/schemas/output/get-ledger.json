@@ -64,7 +64,7 @@
     },
     "rawState": {
       "type": "string",
-      "description": "A JSON string containing all state data for this ledger in rippled JSON format."
+      "description": "A JSON string containing all state data for this ledger in ripple-alpha-core JSON format."
     },
     "stateHashes": {
       "description": "An array of hashes of all state data in this ledger.",

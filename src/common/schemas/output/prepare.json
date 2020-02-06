@@ -6,7 +6,7 @@
   "properties": {
     "txJSON": {
       "type": "string",
-      "description": "The prepared transaction in rippled JSON format."
+      "description": "The prepared transaction in ripple-alpha-core JSON format."
     },
     "instructions": {
       "description": "The instructions for how to execute the transaction after adding automatic defaults.",

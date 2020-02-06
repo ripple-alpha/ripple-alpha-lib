@@ -33,7 +33,7 @@
   - [Payment Channel Create](#payment-channel-create)
   - [Payment Channel Fund](#payment-channel-fund)
   - [Payment Channel Claim](#payment-channel-claim)
-- [rippled APIs](#rippled-apis)
+- [ripple-alpha-core APIs](#ripple-alpha-core-apis)
   - [Listening to streams](#listening-to-streams)
   - [request](#request)
   - [hasNextPage](#hasnextpage)
@@ -128,7 +128,7 @@ Use the following [boilerplate code](https://en.wikipedia.org/wiki/Boilerplate_c
 const RippleAlphaAPI = require('ripple-alpha-lib').RippleAlphaAPI;
 
 const api = new RippleAlphaAPI({
-  server: 'wss://s1.ripplealpha.com:6005' // Public rippled server hosted by Ripple, Inc.
+  server: 'wss://s1.ripplealpha.com:6005' // Public ripple-alpha-core server hosted by Ripple Alpha Association.
 });
 api.on('error', (errorCode, errorMessage) => {
   console.log(errorCode + ': ' + errorMessage);
@@ -170,17 +170,17 @@ The RippleAlphaAPI constructor optionally takes one argument, an object with the
 
 Name | Type | Description
 ---- | ---- | -----------
-authorization | string | *Optional* Username and password for HTTP basic authentication to the rippled server in the format **username:password**.
+authorization | string | *Optional* Username and password for HTTP basic authentication to the ripple-alpha-core server in the format **username:password**.
 certificate | string | *Optional* A string containing the certificate key of the client in PEM format. (Can be an array of certificates).
 feeCushion | number | *Optional* Factor to multiply estimated fee by to provide a cushion in case the required fee rises during submission of a transaction. Defaults to `1.2`.
 key | string | *Optional* A string containing the private key of the client in PEM format. (Can be an array of keys).
 maxFeeXLA | string | *Optional* Maximum fee to use with transactions, in XLA. Must be a string-encoded number. Defaults to `'2'`.
 passphrase | string | *Optional* The passphrase for the private key of the client.
-proxy | uri string | *Optional* URI for HTTP/HTTPS proxy to use to connect to the rippled server.
+proxy | uri string | *Optional* URI for HTTP/HTTPS proxy to use to connect to the ripple-alpha-core server.
 proxyAuthorization | string | *Optional* Username and password for HTTP basic authentication to the proxy in the format **username:password**.
-server | uri string | *Optional* URI for rippled websocket port to connect to. Must start with `wss://`, `ws://`, `wss+unix://`, or `ws+unix://`.
+server | uri string | *Optional* URI for ripple-alpha-core websocket port to connect to. Must start with `wss://`, `ws://`, `wss+unix://`, or `ws+unix://`.
 timeout | integer | *Optional* Timeout in milliseconds before considering a request to have failed.
-trace | boolean | *Optional* If true, log rippled requests and responses to stdout.
+trace | boolean | *Optional* If true, log ripple-alpha-core requests and responses to stdout.
 trustedCertificates | array\<string\> | *Optional* Array of PEM-formatted SSL certificates to trust when connecting to a proxy. This is useful if you want to use a self-signed certificate on the proxy server. Note: Each element must contain a single certificate; concatenated certificates are not valid.
 
 If you omit the `server` parameter, RippleAlphaAPI operates [offline](#offline-functionality).
@@ -256,7 +256,7 @@ Currencies are represented as either 3-character currency codes or 40-character 
 ## Value
 A *value* is a quantity of a currency represented as a decimal string. Be careful: JavaScript's native number format does not have sufficient precision to represent all values. XLA has different precision from other currencies.
 
-**XLA** has 6 significant digits past the decimal point. In other words, XLA cannot be divided into positive values smaller than `0.000001` (1e-6). This smallest unit is called a "drop". XLA has a maximum value of `100000000000` (1e11). Some RippleAlphaAPI methods accept XLA in order to maintain compatibility with older versions of the API. For consistency with the `rippled` APIs, we recommend formally specifying XLA values in *drops* in all API requests, and converting them to XLA for display. This is similar to Bitcoin's *satoshis* and Ethereum's *wei*. 1 XLA = 1,000,000 drops.
+**XLA** has 6 significant digits past the decimal point. In other words, XLA cannot be divided into positive values smaller than `0.000001` (1e-6). This smallest unit is called a "drop". XLA has a maximum value of `100000000000` (1e11). Some RippleAlphaAPI methods accept XLA in order to maintain compatibility with older versions of the API. For consistency with the `ripple-alpha-core` APIs, we recommend formally specifying XLA values in *drops* in all API requests, and converting them to XLA for display. This is similar to Bitcoin's *satoshis* and Ethereum's *wei*. 1 XLA = 1,000,000 drops.
 
 **Non-XLA values** have 16 decimal digits of precision, with a maximum value of `9999999999999999e80`. The smallest positive non-XLA value is `1e-81`.
 
@@ -537,10 +537,10 @@ See [Transaction Types](#transaction-types) for a description.
 
 Name | Type | Description
 ---- | ---- | -----------
-defaultRipple | boolean | *Optional* Enable [rippling](https://ripple.com/build/understanding-the-noripple-flag/) on this account’s trust lines by default. (New in [rippled 0.27.3](https://github.com/ripple/rippled/releases/tag/0.27.3))
+defaultRipple | boolean | *Optional* Enable rippling on this account’s trust lines by default.
 depositAuth | boolean | *Optional* Enable [Deposit Authorization](https://ripple.com/build/deposit-authorization/) on this account. If set, transactions cannot send value of any kind to this account unless the sender of those transactions is the account itself. (Requires the [DepositAuth amendment](https://ripple.com/build/known-amendments/#depositauth))
 disableMasterKey | boolean | *Optional* Disallows use of the master key to sign transactions for this account. To disable the master key, you must authorize the transaction by signing it with the master key pair. You cannot use a regular key pair or a multi-signature. You can re-enable the master key pair using a regular key pair or multi-signature. See [AccountSet](https://developers.ripple.com/accountset.html).
-disallowIncomingXLA | boolean | *Optional* Indicates that client applications should not send XLA to this account. Not enforced by rippled.
+disallowIncomingXLA | boolean | *Optional* Indicates that client applications should not send XLA to this account. Not enforced by ripple-alpha-core.
 domain | string | *Optional* The domain that owns this account, as a hexadecimal string representing the ASCII for the domain in lowercase.
 emailHash | string,null | *Optional* Hash of an email address to be used for generating an avatar image. Conventionally, clients use Gravatar to display this image. Use `null` to clear.
 enableTransactionIDTracking | boolean | *Optional* Track the ID of this account’s most recent transaction.
@@ -793,45 +793,45 @@ signature | string | *Optional* Signed claim authorizing withdrawal of XLA from 
 ```
 
 
-# rippled APIs
+# ripple-alpha-core APIs
 
-ripple-alpha-lib relies on [rippled APIs](https://ripple.com/build/rippled-apis/) for online functionality. In addition to ripple-alpha-lib's own methods, you can also access rippled APIs through ripple-alpha-lib. Use the `request()`, `hasNextPage()`, and `requestNextPage()` methods:
+ripple-alpha-lib relies on ripple-alpha-core APIs for online functionality. In addition to ripple-alpha-lib's own methods, you can also access ripple-alpha-core APIs through ripple-alpha-lib. Use the `request()`, `hasNextPage()`, and `requestNextPage()` methods:
 
-* Use `request()` to issue any `rippled` command, including `account_currencies`, `subscribe`, and `unsubscribe`. [Full list of API Methods](https://ripple.com/build/rippled-apis/#api-methods).
-* Use `hasNextPage()` to determine whether a response has more pages. This is true when the response includes a [`marker` field](https://ripple.com/build/rippled-apis/#markers-and-pagination).
+* Use `request()` to issue any `ripple-alpha-core` command, including `account_currencies`, `subscribe`, and `unsubscribe`.
+* Use `hasNextPage()` to determine whether a response has more pages. This is true when the response includes a `marker` field.
 * Use `requestNextPage()` to request the next page of data.
 
-When using rippled APIs:
+When using ripple-alpha-core APIs:
 
 * Instead of `counterparty`, use `issuer`.
 
 ## Listening to streams
 
-The `rippled` server can push updates to your client when various events happen. Refer to [Subscriptions in the `rippled` API docs](https://developers.ripple.com/subscription-methods.html) for details.
+The `ripple-alpha-core` server can push updates to your client when various events happen.
 
 Note that the `streams` parameter for generic streams takes an array. For example, to subscribe to the `validations` stream, use `{ streams: [ 'validations' ] }`.
 
-The string names of some generic streams to subscribe to are in the table below. (Refer to `rippled` for an up-to-date list of streams.)
+The string names of some generic streams to subscribe to are in the table below. (Refer to `ripple-alpha-core` for an up-to-date list of streams.)
 
 Type | Description
 ---- | -----------
-`server` | Sends a message whenever the status of the `rippled` server (for example, network connectivity) changes.
+`server` | Sends a message whenever the status of the `ripple-alpha-core` server (for example, network connectivity) changes.
 `ledger` | Sends a message whenever the consensus process declares a new validated ledger.
 `transactions` | Sends a message whenever a transaction is included in a closed ledger.
 `transactions_proposed` | Sends a message whenever a transaction is included in a closed ledger, as well as some transactions that have not yet been included in a validated ledger and may never be. Not all proposed transactions appear before validation. Even some transactions that don't succeed are included in validated ledgers because they take the anti-spam transaction fee.
 `validations` | Sends a message whenever the server receives a validation message, also called a validation vote, regardless of whether the server trusts the validator.
 `manifests` | Sends a message whenever the server receives a manifest.
-`peer_status` | (Admin-only) Information about connected peer `rippled` servers, especially with regards to the consensus process.
+`peer_status` | (Admin-only) Information about connected peer `ripple-alpha-core` servers, especially with regards to the consensus process.
 
-When you subscribe to a stream, you must also listen to the relevant message type(s). Some of the available message types are in the table below. (Refer to `rippled` for an up-to-date list of message types.)
+When you subscribe to a stream, you must also listen to the relevant message type(s). Some of the available message types are in the table below. (Refer to `ripple-alpha-core` for an up-to-date list of message types.)
 
 Type | Description
 ---- | -----------
 `ledgerClosed` | Sent by the `ledger` stream when the consensus process declares a new fully validated ledger. The message identifies the ledger and provides some information about its contents.
 `validationReceived` | Sent by the `validations` stream when the server receives a validation message, also called a validation vote, regardless of whether the server trusts the validator.
 `manifestReceived` | Sent by the `manifests` stream when the server receives a manifest.
-`transaction` | Sent by many subscriptions including `transactions`, `transactions_proposed`, `accounts`, `accounts_proposed`, and `book` (Order Book). See [Transaction Streams](https://ripple.com/build/rippled-apis/#transaction-streams) for details.
-`peerStatusChange` | (Admin-only) Reports a large amount of information on the activities of other `rippled` servers to which the server is connected.
+`transaction` | Sent by many subscriptions including `transactions`, `transactions_proposed`, `accounts`, `accounts_proposed`, and `book` (Order Book). See [Transaction Streams](https://ripple.com/build/ripple-alpha-core-apis/#transaction-streams) for details.
+`peerStatusChange` | (Admin-only) Reports a large amount of information on the activities of other `ripple-alpha-core` servers to which the server is connected.
 
 To register your listener function, use `connection.on(type, handler)`.
 
@@ -861,24 +861,23 @@ api.connect().then(() => { // Omit this if you are already connected
 
 The subscription ends when you unsubscribe or the WebSocket connection is closed.
 
-For full details, see [rippled Subscriptions](https://ripple.com/build/rippled-apis/#subscriptions).
 
 ## request
 
 `request(command: string, options: object): Promise<object>`
 
-Returns the response from invoking the specified command, with the specified options, on the connected rippled server.
+Returns the response from invoking the specified command, with the specified options, on the connected ripple-alpha-core server.
 
 Most commands return data for the `current` (in-progress, open) ledger by default. Do not rely on this. Always specify a ledger version in your request. In the example below, the 'validated' ledger is requested, which is the most recent ledger that has been validated by the whole network.
 
 ### Return Value
 
-This method returns a promise that resolves with the response from rippled.
+This method returns a promise that resolves with the response from ripple-alpha-core.
 
 ### Example
 
 ```javascript
-// Replace 'ledger' with your desired rippled command
+// Replace 'ledger' with your desired ripple-alpha-core command
 return api.request('ledger', {
   ledger_index: 'validated'
 }).then(response => {
@@ -923,7 +922,6 @@ Returns `true` when there are more pages available.
 
 When there are more results than contained in the response, the response includes a `marker` field. You can use this convenience method, or check for `marker` yourself.
 
-See [Markers and Pagination](https://ripple.com/build/rippled-apis/#markers-and-pagination).
 
 ### Return Value
 
@@ -951,11 +949,10 @@ Requests the next page of data.
 
 You can use this convenience method, or include `currentResponse.marker` in `params` yourself, when using `request`.
 
-See [Markers and Pagination](https://ripple.com/build/rippled-apis/#markers-and-pagination).
 
 ### Return Value
 
-This method returns a promise that resolves with the next page of data from rippled.
+This method returns a promise that resolves with the next page of data from ripple-alpha-core.
 
 If the response does not have a next page, the promise will reject with `new errors.NotFoundError('response does not have a next page')`.
 
@@ -980,7 +977,7 @@ return api.request(command, params).then(response => {
 
 `renameCounterpartyToIssuer(issue: {currency: string, counterparty: address}): {currency: string, issuer: address}`
 
-Returns an object with the `counterparty` field renamed to `issuer`. This is useful because RippleAlphaAPI generally uses the name `counterparty` while the rippled API generally uses the name `issuer`.
+Returns an object with the `counterparty` field renamed to `issuer`. This is useful because RippleAlphaAPI generally uses the name `counterparty` while the ripple-alpha-core API generally uses the name `issuer`.
 
 This is a static method on the `RippleAlphaAPI` class.
 
@@ -1062,7 +1059,6 @@ asks[] | object | An order in the order book.
 
 **Raw order data:** The response includes a `data` property containing the raw order data. This may include `owner_funds`, `Flags`, and other fields.
 
-For details, see the rippled method [book_offers](https://ripple.com/build/rippled-apis/#book-offers).
 
 ### Example
 
@@ -1299,7 +1295,7 @@ return Promise.all(
 
 `connect(): Promise<void>`
 
-Tells the RippleAlphaAPI instance to connect to its rippled server.
+Tells the RippleAlphaAPI instance to connect to its ripple-alpha-core server.
 
 ### Parameters
 
@@ -1317,7 +1313,7 @@ See [Boilerplate](#boilerplate) for code sample.
 
 `disconnect(): Promise<void>`
 
-Tells the RippleAlphaAPI instance to disconnect from its rippled server.
+Tells the RippleAlphaAPI instance to disconnect from its ripple-alpha-core server.
 
 ### Parameters
 
@@ -1335,7 +1331,7 @@ See [Boilerplate](#boilerplate) for code sample
 
 `isConnected(): boolean`
 
-Checks if the RippleAlphaAPI instance is connected to its rippled server.
+Checks if the RippleAlphaAPI instance is connected to its ripple-alpha-core server.
 
 ### Parameters
 
@@ -1371,17 +1367,17 @@ This method returns a promise that resolves with an object with the following st
 
 Name | Type | Description
 ---- | ---- | -----------
-buildVersion | string | The version number of the running rippled version.
-completeLedgers | string | Range expression indicating the sequence numbers of the ledger versions the local rippled has in its database. It is possible to be a disjoint sequence, e.g. “2500-5000,32570-7695432”.
-hostID | string | On an admin request, returns the hostname of the server running the rippled instance; otherwise, returns a unique four letter word.
-ioLatencyMs | number | Amount of time spent waiting for I/O operations to be performed, in milliseconds. If this number is not very, very low, then the rippled server is probably having serious load issues.
+buildVersion | string | The version number of the running ripple-alpha-core version.
+completeLedgers | string | Range expression indicating the sequence numbers of the ledger versions the local ripple-alpha-core has in its database. It is possible to be a disjoint sequence, e.g. “2500-5000,32570-7695432”.
+hostID | string | On an admin request, returns the hostname of the server running the ripple-alpha-core instance; otherwise, returns a unique four letter word.
+ioLatencyMs | number | Amount of time spent waiting for I/O operations to be performed, in milliseconds. If this number is not very, very low, then the ripple-alpha-core server is probably having serious load issues.
 lastClose | object | Information about the last time the server closed a ledger.
 *lastClose.* convergeTimeS | number | The time it took to reach a consensus for the last ledger closing, in seconds.
 *lastClose.* proposers | integer | Number of trusted validators participating in the ledger closing.
 loadFactor | number | The load factor the server is currently enforcing, as a multiplier on the base transaction fee. The load factor is determined by the highest of the individual server’s load factor, cluster’s load factor, and the overall network’s load factor.
-peers | integer | How many other rippled servers the node is currently connected to.
+peers | integer | How many other ripple-alpha-core servers the node is currently connected to.
 pubkeyNode | string | Public key used to verify this node for internal communications; this key is automatically generated by the server the first time it starts up. (If deleted, the node can just create a new pair of keys.)
-serverState | string | A string indicating to what extent the server is participating in the network. See [Possible Server States](https://developers.ripple.com/rippled-server-states.html) for more details.
+serverState | string | A string indicating to what extent the server is participating in the network.
 validatedLedger | object | Information about the fully-validated ledger with the highest sequence number (the most recent).
 *validatedLedger.* age | integer | The time since the ledger was closed, in seconds.
 *validatedLedger.* baseFeeXLA | [value](#value) | Base fee, in XLA. This may be represented in scientific notation such as 1e-05 for 0.00005.
@@ -1433,7 +1429,7 @@ return api.getServerInfo().then(info => {/* ... */});
 
 `getFee(): Promise<string>`
 
-Returns the estimated transaction fee for the rippled server the RippleAlphaAPI instance is connected to.
+Returns the estimated transaction fee for the ripple-alpha-core server the RippleAlphaAPI instance is connected to.
 
 This will use the [feeCushion parameter](#parameters) provided to the RippleAlphaAPI constructor, or the default value of `1.2`.
 
@@ -1514,7 +1510,7 @@ sequence | [sequence](#account-sequence-number) | The account sequence number of
 type | [transactionType](#transaction-types) | The type of the transaction.
 specification | object | A specification that would produce the same outcome as this transaction. *Exception:* For payment transactions, this omits the `destination.amount` field, to prevent misunderstanding. The structure of the specification depends on the value of the `type` field (see [Transaction Types](#transaction-types) for details). *Note:* This is **not** necessarily the same as the original specification.
 outcome | object | The outcome of the transaction (what effects it had).
-*outcome.* result | string | Result code returned by rippled. See [Transaction Results](https://developers.ripple.com/transaction-results.html) for a complete list.
+*outcome.* result | string | Result code returned by ripple-alpha-core.
 *outcome.* fee | [value](#value) | The XLA fee that was charged for the transaction.
 *outcome.balanceChanges.* \* | array\<[balance](#amount)\> | Key is the XLA Ledger address; value is an array of signed amounts representing changes of balances for that address.
 *outcome.orderbookChanges.* \* | array | Key is the maker's XLA Ledger address; value is an array of changes
@@ -2834,7 +2830,6 @@ asks[] | object | An order in the order book.
 
 **Raw order data:** The response includes a `data` property containing the raw order data. This may include `owner_funds`, `Flags`, and other fields.
 
-For details, see the rippled method [book_offers](https://ripple.com/build/rippled-apis/#book-offers).
 
 ### Example
 
@@ -3907,10 +3902,10 @@ This method returns a promise that resolves with an array of objects with the fo
 
 Name | Type | Description
 ---- | ---- | -----------
-defaultRipple | boolean | *Optional* Enable [rippling](https://ripple.com/build/understanding-the-noripple-flag/) on this account’s trust lines by default. (New in [rippled 0.27.3](https://github.com/ripple/rippled/releases/tag/0.27.3))
+defaultRipple | boolean | *Optional* Enable rippling on this account’s trust lines by default.
 depositAuth | boolean | *Optional* Enable [Deposit Authorization](https://ripple.com/build/deposit-authorization/) on this account. If set, transactions cannot send value of any kind to this account unless the sender of those transactions is the account itself. (Requires the [DepositAuth amendment](https://ripple.com/build/known-amendments/#depositauth))
 disableMasterKey | boolean | *Optional* Disallows use of the master key to sign transactions for this account. To disable the master key, you must authorize the transaction by signing it with the master key pair. You cannot use a regular key pair or a multi-signature. You can re-enable the master key pair using a regular key pair or multi-signature. See [AccountSet](https://developers.ripple.com/accountset.html).
-disallowIncomingXLA | boolean | *Optional* Indicates that client applications should not send XLA to this account. Not enforced by rippled.
+disallowIncomingXLA | boolean | *Optional* Indicates that client applications should not send XLA to this account. Not enforced by ripple-alpha-core.
 domain | string | *Optional* The domain that owns this account, as a hexadecimal string representing the ASCII for the domain in lowercase.
 emailHash | string,null | *Optional* Hash of an email address to be used for generating an avatar image. Conventionally, clients use Gravatar to display this image. Use `null` to clear.
 enableTransactionIDTracking | boolean | *Optional* Track the ID of this account’s most recent transaction.
@@ -4434,7 +4429,7 @@ parentLedgerHash | string | Unique identifying hash of the ledger that came imme
 parentCloseTime | date-time string | The time at which the previous ledger was closed.
 totalDrops | [value](#value) | Total number of drops (1/1,000,000th of an XLA) in the network, as a quoted integer. (This decreases as transaction fees cause XLA to be destroyed.)
 transactionHash | string | Hash of the transaction information included in this ledger.
-rawState | string | *Optional* A JSON string containing all state data for this ledger in rippled JSON format.
+rawState | string | *Optional* A JSON string containing all state data for this ledger in ripple-alpha-core JSON format.
 stateHashes | array\<string\> | *Optional* An array of hashes of all state data in this ledger.
 transactionHashes | array\<[transactionHash](#transaction-id)\> | *Optional* An array of hashes of all transactions that were validated in this ledger.
 transactions | array\<[getTransaction](#gettransaction)\> | *Optional* Array of all transactions that were validated in this ledger. Transactions are represented in the same format as the return value of [getTransaction](#gettransaction).
@@ -4505,9 +4500,9 @@ console.log(JSON.stringify(flags, null, 2))
 
 Prepare a transaction. The prepared transaction must subsequently be [signed](#sign) and [submitted](#submit).
 
-This method works with any of [the transaction types supported by rippled](https://developers.ripple.com/transaction-types.html).
+This method works with any of the transaction types supported by ripple-alpha-core.
 
-Notably, this is the preferred method for preparing a `DepositPreauth` transaction (added in rippled 1.1.0).
+Notably, this is the preferred method for preparing a `DepositPreauth` transaction.
 
 ### Parameters
 
@@ -4526,7 +4521,7 @@ All "prepare*" methods have the same return type.
 
 Name | Type | Description
 ---- | ---- | -----------
-txJSON | string | The prepared transaction in rippled JSON format.
+txJSON | string | The prepared transaction in ripple-alpha-core JSON format.
 instructions | object | The instructions for how to execute the transaction after adding automatic defaults.
 *instructions.* fee | [value](#value) | The fee to pay for the transaction. See [Transaction Fees](#transaction-fees) for more information. For multi-signed transactions, this fee will be multiplied by (N+1), where N is the number of signatures you plan to provide.
 *instructions.* sequence | [sequence](#account-sequence-number) | The initiating account's sequence number for this transaction.
@@ -4581,7 +4576,7 @@ All "prepare*" methods have the same return type.
 
 Name | Type | Description
 ---- | ---- | -----------
-txJSON | string | The prepared transaction in rippled JSON format.
+txJSON | string | The prepared transaction in ripple-alpha-core JSON format.
 instructions | object | The instructions for how to execute the transaction after adding automatic defaults.
 *instructions.* fee | [value](#value) | The fee to pay for the transaction. See [Transaction Fees](#transaction-fees) for more information. For multi-signed transactions, this fee will be multiplied by (N+1), where N is the number of signatures you plan to provide.
 *instructions.* sequence | [sequence](#account-sequence-number) | The initiating account's sequence number for this transaction.
@@ -4654,7 +4649,7 @@ All "prepare*" methods have the same return type.
 
 Name | Type | Description
 ---- | ---- | -----------
-txJSON | string | The prepared transaction in rippled JSON format.
+txJSON | string | The prepared transaction in ripple-alpha-core JSON format.
 instructions | object | The instructions for how to execute the transaction after adding automatic defaults.
 *instructions.* fee | [value](#value) | The fee to pay for the transaction. See [Transaction Fees](#transaction-fees) for more information. For multi-signed transactions, this fee will be multiplied by (N+1), where N is the number of signatures you plan to provide.
 *instructions.* sequence | [sequence](#account-sequence-number) | The initiating account's sequence number for this transaction.
@@ -4722,7 +4717,7 @@ All "prepare*" methods have the same return type.
 
 Name | Type | Description
 ---- | ---- | -----------
-txJSON | string | The prepared transaction in rippled JSON format.
+txJSON | string | The prepared transaction in ripple-alpha-core JSON format.
 instructions | object | The instructions for how to execute the transaction after adding automatic defaults.
 *instructions.* fee | [value](#value) | The fee to pay for the transaction. See [Transaction Fees](#transaction-fees) for more information. For multi-signed transactions, this fee will be multiplied by (N+1), where N is the number of signatures you plan to provide.
 *instructions.* sequence | [sequence](#account-sequence-number) | The initiating account's sequence number for this transaction.
@@ -4790,7 +4785,7 @@ All "prepare*" methods have the same return type.
 
 Name | Type | Description
 ---- | ---- | -----------
-txJSON | string | The prepared transaction in rippled JSON format.
+txJSON | string | The prepared transaction in ripple-alpha-core JSON format.
 instructions | object | The instructions for how to execute the transaction after adding automatic defaults.
 *instructions.* fee | [value](#value) | The fee to pay for the transaction. See [Transaction Fees](#transaction-fees) for more information. For multi-signed transactions, this fee will be multiplied by (N+1), where N is the number of signatures you plan to provide.
 *instructions.* sequence | [sequence](#account-sequence-number) | The initiating account's sequence number for this transaction.
@@ -4843,7 +4838,7 @@ All "prepare*" methods have the same return type.
 
 Name | Type | Description
 ---- | ---- | -----------
-txJSON | string | The prepared transaction in rippled JSON format.
+txJSON | string | The prepared transaction in ripple-alpha-core JSON format.
 instructions | object | The instructions for how to execute the transaction after adding automatic defaults.
 *instructions.* fee | [value](#value) | The fee to pay for the transaction. See [Transaction Fees](#transaction-fees) for more information. For multi-signed transactions, this fee will be multiplied by (N+1), where N is the number of signatures you plan to provide.
 *instructions.* sequence | [sequence](#account-sequence-number) | The initiating account's sequence number for this transaction.
@@ -4897,9 +4892,9 @@ address | [address](#address) | The address of the account that is creating the 
 escrowCreation | [escrowCreation](#escrow-creation) | The specification of the escrow creation to prepare.
 instructions | [instructions](#transaction-instructions) | *Optional* Instructions for executing the transaction
 
-This is a convenience method for generating the EscrowCreate JSON used by rippled, so the same restrictions apply.
+This is a convenience method for generating the EscrowCreate JSON used by ripple-alpha-core, so the same restrictions apply.
 
-Field mapping: `allowCancelAfter` is equivalent to rippled's `CancelAfter`; `allowExecuteAfter` is equivalent to `FinishAfter`. At the `allowCancelAfter` time, the escrow is considered expired. This means that the funds can only be returned to the sender. At the `allowExecuteAfter` time, the escrow is permitted to be released to the recipient (if the `condition` is fulfilled).
+Field mapping: `allowCancelAfter` is equivalent to ripple-alpha-core's `CancelAfter`; `allowExecuteAfter` is equivalent to `FinishAfter`. At the `allowCancelAfter` time, the escrow is considered expired. This means that the funds can only be returned to the sender. At the `allowExecuteAfter` time, the escrow is permitted to be released to the recipient (if the `condition` is fulfilled).
 
 Note that `allowCancelAfter` must be chronologically later than `allowExecuteAfter`.
 
@@ -4913,7 +4908,7 @@ All "prepare*" methods have the same return type.
 
 Name | Type | Description
 ---- | ---- | -----------
-txJSON | string | The prepared transaction in rippled JSON format.
+txJSON | string | The prepared transaction in ripple-alpha-core JSON format.
 instructions | object | The instructions for how to execute the transaction after adding automatic defaults.
 *instructions.* fee | [value](#value) | The fee to pay for the transaction. See [Transaction Fees](#transaction-fees) for more information. For multi-signed transactions, this fee will be multiplied by (N+1), where N is the number of signatures you plan to provide.
 *instructions.* sequence | [sequence](#account-sequence-number) | The initiating account's sequence number for this transaction.
@@ -4971,7 +4966,7 @@ All "prepare*" methods have the same return type.
 
 Name | Type | Description
 ---- | ---- | -----------
-txJSON | string | The prepared transaction in rippled JSON format.
+txJSON | string | The prepared transaction in ripple-alpha-core JSON format.
 instructions | object | The instructions for how to execute the transaction after adding automatic defaults.
 *instructions.* fee | [value](#value) | The fee to pay for the transaction. See [Transaction Fees](#transaction-fees) for more information. For multi-signed transactions, this fee will be multiplied by (N+1), where N is the number of signatures you plan to provide.
 *instructions.* sequence | [sequence](#account-sequence-number) | The initiating account's sequence number for this transaction.
@@ -5027,7 +5022,7 @@ All "prepare*" methods have the same return type.
 
 Name | Type | Description
 ---- | ---- | -----------
-txJSON | string | The prepared transaction in rippled JSON format.
+txJSON | string | The prepared transaction in ripple-alpha-core JSON format.
 instructions | object | The instructions for how to execute the transaction after adding automatic defaults.
 *instructions.* fee | [value](#value) | The fee to pay for the transaction. See [Transaction Fees](#transaction-fees) for more information. For multi-signed transactions, this fee will be multiplied by (N+1), where N is the number of signatures you plan to provide.
 *instructions.* sequence | [sequence](#account-sequence-number) | The initiating account's sequence number for this transaction.
@@ -5085,7 +5080,7 @@ All "prepare*" methods have the same return type.
 
 Name | Type | Description
 ---- | ---- | -----------
-txJSON | string | The prepared transaction in rippled JSON format.
+txJSON | string | The prepared transaction in ripple-alpha-core JSON format.
 instructions | object | The instructions for how to execute the transaction after adding automatic defaults.
 *instructions.* fee | [value](#value) | The fee to pay for the transaction. See [Transaction Fees](#transaction-fees) for more information. For multi-signed transactions, this fee will be multiplied by (N+1), where N is the number of signatures you plan to provide.
 *instructions.* sequence | [sequence](#account-sequence-number) | The initiating account's sequence number for this transaction.
@@ -5143,7 +5138,7 @@ All "prepare*" methods have the same return type.
 
 Name | Type | Description
 ---- | ---- | -----------
-txJSON | string | The prepared transaction in rippled JSON format.
+txJSON | string | The prepared transaction in ripple-alpha-core JSON format.
 instructions | object | The instructions for how to execute the transaction after adding automatic defaults.
 *instructions.* fee | [value](#value) | The fee to pay for the transaction. See [Transaction Fees](#transaction-fees) for more information. For multi-signed transactions, this fee will be multiplied by (N+1), where N is the number of signatures you plan to provide.
 *instructions.* sequence | [sequence](#account-sequence-number) | The initiating account's sequence number for this transaction.
@@ -5198,7 +5193,7 @@ All "prepare*" methods have the same return type.
 
 Name | Type | Description
 ---- | ---- | -----------
-txJSON | string | The prepared transaction in rippled JSON format.
+txJSON | string | The prepared transaction in ripple-alpha-core JSON format.
 instructions | object | The instructions for how to execute the transaction after adding automatic defaults.
 *instructions.* fee | [value](#value) | The fee to pay for the transaction. See [Transaction Fees](#transaction-fees) for more information. For multi-signed transactions, this fee will be multiplied by (N+1), where N is the number of signatures you plan to provide.
 *instructions.* sequence | [sequence](#account-sequence-number) | The initiating account's sequence number for this transaction.
@@ -5254,7 +5249,7 @@ All "prepare*" methods have the same return type.
 
 Name | Type | Description
 ---- | ---- | -----------
-txJSON | string | The prepared transaction in rippled JSON format.
+txJSON | string | The prepared transaction in ripple-alpha-core JSON format.
 instructions | object | The instructions for how to execute the transaction after adding automatic defaults.
 *instructions.* fee | [value](#value) | The fee to pay for the transaction. See [Transaction Fees](#transaction-fees) for more information. For multi-signed transactions, this fee will be multiplied by (N+1), where N is the number of signatures you plan to provide.
 *instructions.* sequence | [sequence](#account-sequence-number) | The initiating account's sequence number for this transaction.
@@ -5313,7 +5308,7 @@ All "prepare*" methods have the same return type.
 
 Name | Type | Description
 ---- | ---- | -----------
-txJSON | string | The prepared transaction in rippled JSON format.
+txJSON | string | The prepared transaction in ripple-alpha-core JSON format.
 instructions | object | The instructions for how to execute the transaction after adding automatic defaults.
 *instructions.* fee | [value](#value) | The fee to pay for the transaction. See [Transaction Fees](#transaction-fees) for more information. For multi-signed transactions, this fee will be multiplied by (N+1), where N is the number of signatures you plan to provide.
 *instructions.* sequence | [sequence](#account-sequence-number) | The initiating account's sequence number for this transaction.
@@ -5368,7 +5363,7 @@ All "prepare*" methods have the same return type.
 
 Name | Type | Description
 ---- | ---- | -----------
-txJSON | string | The prepared transaction in rippled JSON format.
+txJSON | string | The prepared transaction in ripple-alpha-core JSON format.
 instructions | object | The instructions for how to execute the transaction after adding automatic defaults.
 *instructions.* fee | [value](#value) | The fee to pay for the transaction. See [Transaction Fees](#transaction-fees) for more information. For multi-signed transactions, this fee will be multiplied by (N+1), where N is the number of signatures you plan to provide.
 *instructions.* sequence | [sequence](#account-sequence-number) | The initiating account's sequence number for this transaction.
@@ -5420,7 +5415,7 @@ This method can sign any of [the transaction types supported by ripple-binary-co
 
 Name | Type | Description
 ---- | ---- | -----------
-txJSON | string | Transaction represented as a JSON string in rippled format.
+txJSON | string | Transaction represented as a JSON string in ripple-alpha-core format.
 keypair | object | *Optional* The private and public key of the account that is initiating the transaction. (This field cannot be used with secret).
 *keypair.* privateKey | privateKey | The uppercase hexadecimal representation of the secp256k1 or Ed25519 private key.
 *keypair.* publicKey | publicKey | The uppercase hexadecimal representation of the secp256k1 or Ed25519 public key.
@@ -5917,7 +5912,7 @@ ledger | object | The ledger header to hash.
 *ledger.* parentCloseTime | date-time string | The time at which the previous ledger was closed.
 *ledger.* totalDrops | [value](#value) | Total number of drops (1/1,000,000th of an XLA) in the network, as a quoted integer. (This decreases as transaction fees cause XLA to be destroyed.)
 *ledger.* transactionHash | string | Hash of the transaction information included in this ledger.
-*ledger.* rawState | string | *Optional* A JSON string containing all state data for this ledger in rippled JSON format.
+*ledger.* rawState | string | *Optional* A JSON string containing all state data for this ledger in ripple-alpha-core JSON format.
 *ledger.* stateHashes | array\<string\> | *Optional* An array of hashes of all state data in this ledger.
 *ledger.* transactionHashes | array\<[transactionHash](#transaction-id)\> | *Optional* An array of hashes of all transactions that were validated in this ledger.
 *ledger.* transactions | array\<[getTransaction](#gettransaction)\> | *Optional* Array of all transactions that were validated in this ledger. Transactions are represented in the same format as the return value of [getTransaction](#gettransaction).
@@ -5951,7 +5946,7 @@ return api.computeLedgerHash(ledger);
 
 `xlaToDrops(xla: string | BigNumber): string`
 
-Converts an XLA amount to drops. 1 XLA = 1,000,000 drops, so 1 drop = 0.000001 XLA. This method is useful when converting amounts for use with the rippled API, which requires XLA amounts to be specified in drops.
+Converts an XLA amount to drops. 1 XLA = 1,000,000 drops, so 1 drop = 0.000001 XLA. This method is useful when converting amounts for use with the ripple-alpha-core API, which requires XLA amounts to be specified in drops.
 
 ### Parameters
 
@@ -5975,7 +5970,7 @@ return api.xlaToDrops('1');
 
 `dropsToXla(drops: string | BigNumber): string`
 
-Converts an amount of drops to XLA. 1 drop = 0.000001 XLA, so 1 XLA = 1,000,000 drops. This method is useful when converting amounts from the rippled API, which describes XLA amounts in drops.
+Converts an amount of drops to XLA. 1 drop = 0.000001 XLA, so 1 XLA = 1,000,000 drops. This method is useful when converting amounts from the ripple-alpha-core API, which describes XLA amounts in drops.
 
 ### Parameters
 
@@ -6003,7 +5998,7 @@ This method parses a string representation of a date, and returns the number of 
 
 The Ripple Epoch is 946684800 seconds after the Unix Epoch.
 
-This method is useful for creating timestamps to use with the rippled APIs. The rippled APIs represent time as an unsigned integer of the number of seconds since the Ripple Epoch.
+This method is useful for creating timestamps to use with the ripple-alpha-core APIs. The ripple-alpha-core APIs represent time as an unsigned integer of the number of seconds since the Ripple Epoch.
 
 ### Parameters
 
@@ -6031,7 +6026,7 @@ This method takes the number of seconds since the "Ripple Epoch" of January 1, 2
 
 The Ripple Epoch is 946684800 seconds after the Unix Epoch.
 
-This method is useful for interpreting timestamps returned by the rippled APIs. The rippled APIs represent time as an unsigned integer of the number of seconds since the Ripple Epoch.
+This method is useful for interpreting timestamps returned by the ripple-alpha-core APIs. The ripple-alpha-core APIs represent time as an unsigned integer of the number of seconds since the Ripple Epoch.
 
 ### Parameters
 
@@ -6103,7 +6098,7 @@ Applies globally to all transactions.
 
 You can use the `prepareSettings` method to change your account flags. This method uses AccountSet flags internally.
 
-In the rippled API, Account Flags can be enabled and disabled with the SetFlag and ClearFlag parameters. See [AccountSet Flags](https://developers.ripple.com/accountset.html#accountset-flags).
+In the ripple-alpha-core API, Account Flags can be enabled and disabled with the SetFlag and ClearFlag parameters. See [AccountSet Flags](https://developers.ripple.com/accountset.html#accountset-flags).
 
 The AccountSet transaction type has some transaction flags, but their use is discouraged.
 
@@ -6219,16 +6214,15 @@ This event is emitted when there is an error on the connection to the server tha
 ### Return Value
 
 The first parameter is a string indicating the error type:
-* `badMessage` - rippled returned a malformed message
+* `badMessage` - ripple-alpha-core returned a malformed message
 * `websocket` - the websocket library emitted an error
-* one of the error codes found in the [rippled Universal Errors](https://ripple.com/build/rippled-apis/#universal-errors).
 
 The second parameter is a message explaining the error.
 
 The third parameter is:
 * the message that caused the error for `badMessage`
 * the error object emitted for `websocket`
-* the parsed response for rippled errors
+* the parsed response for ripple-alpha-core errors
 
 ### Example
 

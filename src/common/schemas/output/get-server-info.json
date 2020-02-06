@@ -5,20 +5,20 @@
   "properties": {
     "buildVersion": {
       "type": "string",
-      "description": "The version number of the running rippled version."
+      "description": "The version number of the running ripple-alpha-core version."
     },
     "completeLedgers": {
       "type": "string",
       "pattern": "[0-9,-]+",
-      "description": "Range expression indicating the sequence numbers of the ledger versions the local rippled has in its database. It is possible to be a disjoint sequence, e.g. “2500-5000,32570-7695432”."
+      "description": "Range expression indicating the sequence numbers of the ledger versions the local ripple-alpha-core has in its database. It is possible to be a disjoint sequence, e.g. “2500-5000,32570-7695432”."
     },
     "hostID": {
       "type": "string",
-      "description": "On an admin request, returns the hostname of the server running the rippled instance; otherwise, returns a unique four letter word."
+      "description": "On an admin request, returns the hostname of the server running the ripple-alpha-core instance; otherwise, returns a unique four letter word."
     },
     "ioLatencyMs": {
       "type": "number",
-      "description": "Amount of time spent waiting for I/O operations to be performed, in milliseconds. If this number is not very, very low, then the rippled server is probably having serious load issues."
+      "description": "Amount of time spent waiting for I/O operations to be performed, in milliseconds. If this number is not very, very low, then the ripple-alpha-core server is probably having serious load issues."
     },
     "load": {
       "type": "object",
@@ -58,7 +58,7 @@
     "peers": {
       "type": "integer",
       "minimum": 0,
-      "description": "How many other rippled servers the node is currently connected to."
+      "description": "How many other ripple-alpha-core servers the node is currently connected to."
     },
     "pubkeyNode": {
       "type": "string",
@@ -70,7 +70,7 @@
     },
     "serverState": {
       "type": "string",
-      "description": "A string indicating to what extent the server is participating in the network. See [Possible Server States](https://developers.ripple.com/rippled-server-states.html) for more details.",
+      "description": "A string indicating to what extent the server is participating in the network.",
       "enum": ["disconnected", "connected", "syncing", "tracking", "full", "validating", "proposing"]
     },
     "validatedLedger": {

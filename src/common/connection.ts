@@ -206,7 +206,7 @@ class Connection extends EventEmitter {
     }
     return this.request(request).then((data: any) => {
       if (_.isEmpty(data) || !data.ledger_index) {
-        // rippled instance doesn't have validated ledgers
+        // ripple-alpha-core instance doesn't have validated ledgers
         return this._disconnect(false).then(() => {
           throw new RippledNotInitializedError('Rippled not initialized')
         })
@@ -300,7 +300,7 @@ class Connection extends EventEmitter {
     return new Promise<void>((_resolve, reject) => {
       this._connectTimer = setTimeout(() => {
           reject(new ConnectionError(`Error: connect() timed out after ${this._connectionTimeout} ms. ` +
-          `If your internet connection is working, the rippled server may be blocked or inaccessible.`))
+          `If your internet connection is working, the ripple-alpha-core server may be blocked or inaccessible.`))
       }, this._connectionTimeout)
       if (!this._url) {
         reject(new ConnectionError(

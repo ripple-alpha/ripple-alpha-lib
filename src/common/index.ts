@@ -18,7 +18,7 @@ export function ensureClassicAddress(account: string): string {
       throw new Error('This command does not support the use of a tag. Use an address without a tag.')
     }
 
-    // For rippled requests that use an account, always use a classic address.
+    // For ripple-alpha-core requests that use an account, always use a classic address.
     return classicAddress
   } else {
     return account

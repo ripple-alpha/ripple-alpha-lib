@@ -22,7 +22,7 @@ const accountRootFlags = {
 
   // lsfDisallowXRP:
   // Disallow sending XRP.
-  // Not enforced by rippled; client applications should check.
+  // Not enforced by ripple-alpha-core; client applications should check.
   DisallowXRP: 0x00080000,
 
   // lsfGlobalFreeze:

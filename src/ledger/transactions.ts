@@ -38,7 +38,7 @@ function parseBinaryTransaction(transaction) {
 
 function parseAccountTxTransaction(tx, includeRawTransaction: boolean) {
   const _tx = tx.tx_blob ? parseBinaryTransaction(tx) : tx
-  // rippled uses a different response format for 'account_tx' than 'tx'
+  // ripple-alpha-core uses a different response format for 'account_tx' than 'tx'
   return parseTransaction(_.assign({}, _tx.tx,
     {meta: _tx.meta, validated: _tx.validated}), includeRawTransaction)
 }

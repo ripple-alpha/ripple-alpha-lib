@@ -72,7 +72,7 @@ function convertError(connection: Connection, options: TransactionOptions,
     shouldUseNotFoundError = true
   }
 
-  // In the future, we should deprecate this error, instead passing through the one from rippled.
+  // In the future, we should deprecate this error, instead passing through the one from ripple-alpha-core.
   const _error = shouldUseNotFoundError ? new errors.NotFoundError('Transaction not found') : error
 
   if (_error instanceof errors.NotFoundError) {

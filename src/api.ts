@@ -109,7 +109,7 @@ class RippleAlphaAPI extends EventEmitter {
   _maxFeeXLA: string
 
   // New in > 0.21.0
-  // non-validated ledger versions are allowed, and passed to rippled as-is.
+  // non-validated ledger versions are allowed, and passed to ripple-alpha-core as-is.
   connection: Connection
 
   // these are exposed only for use by unit tests; they are not part of the API.
@@ -198,7 +198,6 @@ class RippleAlphaAPI extends EventEmitter {
    * When there are more results than contained in the response, the response
    * includes a `marker` field.
    *
-   * See https://ripple.com/build/rippled-apis/#markers-and-pagination
    */
   hasNextPage<T extends {marker?: string}>(currentResponse: T): boolean {
     return !!currentResponse.marker
@@ -251,7 +250,7 @@ class RippleAlphaAPI extends EventEmitter {
    * know which response key contains the array of resources.
    *
    * NOTE: This command is used by existing methods and is not recommended for
-   * general use. Instead, use rippled's built-in pagination and make multiple
+   * general use. Instead, use ripple-alpha-core's built-in pagination and make multiple
    * requests as needed.
    */
   async _requestAll(command: 'account_offers', params: AccountOffersRequest):
