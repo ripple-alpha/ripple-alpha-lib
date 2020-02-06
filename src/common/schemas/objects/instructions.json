@@ -14,7 +14,7 @@
       "$ref": "value"
     },
     "maxFee": {
-      "description": "Deprecated: Use `maxFeeXLA` in the RippleAPI constructor instead. The maximum fee to pay for this transaction. If this exceeds `maxFeeXLA`, `maxFeeXLA` will be used instead. See [Transaction Fees](#transaction-fees) for more information.",
+      "description": "Deprecated: Use `maxFeeXLA` in the RippleAlphaAPI constructor instead. The maximum fee to pay for this transaction. If this exceeds `maxFeeXLA`, `maxFeeXLA` will be used instead. See [Transaction Fees](#transaction-fees) for more information.",
       "$ref": "value"
     },
     "maxLedgerVersion": {

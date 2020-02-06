@@ -1,7 +1,7 @@
 import * as _ from 'lodash'
 import {convertKeysFromSnakeCaseToCamelCase} from './utils'
 import BigNumber from 'bignumber.js'
-import {RippleAPI} from '..'
+import {RippleAlphaAPI} from '..'
 
 export type GetServerInfoResponse = {
   buildVersion: string,
@@ -40,7 +40,7 @@ function renameKeys(object, mapping) {
   })
 }
 
-function getServerInfo(this: RippleAPI): Promise<GetServerInfoResponse> {
+function getServerInfo(this: RippleAlphaAPI): Promise<GetServerInfoResponse> {
   return this.request('server_info').then(response => {
     const info = convertKeysFromSnakeCaseToCamelCase(response.info)
     renameKeys(info, {hostid: 'hostID'})
@@ -65,7 +65,7 @@ function getServerInfo(this: RippleAPI): Promise<GetServerInfoResponse> {
 // This is a public API that can be called directly.
 // This is not used by the `prepare*` methods. See `src/transaction/utils.ts`
 async function getFee(
-  this: RippleAPI,
+  this: RippleAlphaAPI,
   cushion?: number
 ): Promise<string> {
   if (cushion === undefined) {

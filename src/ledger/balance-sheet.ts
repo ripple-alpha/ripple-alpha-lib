@@ -2,7 +2,7 @@ import * as _ from 'lodash'
 import {validate} from '../common'
 import {Amount} from '../common/types/objects'
 import {ensureLedgerVersion} from './utils'
-import {RippleAPI} from '..'
+import {RippleAlphaAPI} from '..'
 
 export type BalanceSheetOptions = {
   excludeAddresses?: Array<string>,
@@ -48,7 +48,7 @@ function formatBalanceSheet(balanceSheet): GetBalanceSheet {
 }
 
 async function getBalanceSheet(
-  this: RippleAPI, address: string, options: BalanceSheetOptions = {}
+  this: RippleAlphaAPI, address: string, options: BalanceSheetOptions = {}
 ): Promise<GetBalanceSheet> {
   // 1. Validate
   validate.getBalanceSheet({address, options})

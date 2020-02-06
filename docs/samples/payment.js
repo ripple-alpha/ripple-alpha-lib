@@ -1,10 +1,10 @@
 'use strict';
-const RippleAPI = require('../../src').RippleAPI; // require('ripple-alpha-lib')
+const RippleAlphaAPI = require('../../src').RippleAlphaAPI; // require('ripple-alpha-lib')
 
 const address = 'INSERT ADDRESS HERE';
 const secret = 'INSERT SECRET HERE';
 
-const api = new RippleAPI({server: 'wss://s1.ripple.com:6005'});
+const api = new RippleAlphaAPI({server: 'wss://s1.ripplealpha.com:6005'});
 const instructions = {maxLedgerVersionOffset: 5};
 
 const payment = {

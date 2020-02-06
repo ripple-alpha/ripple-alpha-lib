@@ -37,7 +37,7 @@ return api.sign(txJSON, secret); // or: api.sign(txJSON, keypair);
 ### Example (multisigning)
 
 ```javascript
-const RippleAPI = require('ripple-alpha-lib').RippleAPI;
+const RippleAlphaAPI = require('ripple-alpha-lib').RippleAlphaAPI;
 
 // jon's address will have a multi-signing setup with a quorum of 2
 const jon = {
@@ -84,7 +84,7 @@ const multiSignPaymentTransaction = {
     Amount: '88000000'
 };
 
-const api = new RippleAPI({
+const api = new RippleAlphaAPI({
     server: 'wss://s1.ripplealpha.com:6005'
 });
 

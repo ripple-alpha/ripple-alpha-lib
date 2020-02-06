@@ -1,7 +1,7 @@
 import {prepareTransaction} from './utils'
 import {validate} from '../common'
 import {Instructions, Prepare, TransactionJSON} from './types'
-import {RippleAPI} from '..'
+import {RippleAlphaAPI} from '..'
 
 export type CheckCancelParameters = {
   checkID: string
@@ -19,7 +19,7 @@ function createCheckCancelTransaction(account: string,
   return txJSON
 }
 
-function prepareCheckCancel(this: RippleAPI, address: string,
+function prepareCheckCancel(this: RippleAlphaAPI, address: string,
   checkCancel: CheckCancelParameters,
   instructions: Instructions = {}
 ): Promise<Prepare> {

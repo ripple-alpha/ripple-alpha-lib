@@ -1,6 +1,6 @@
-import {RippleAPI} from '../../dist/npm'
+import {RippleAlphaAPI} from '../../dist/npm'
 
-const api = new RippleAPI({
+const api = new RippleAlphaAPI({
   server: 'wss://s1.ripplealpha.com:6005'
 })
 

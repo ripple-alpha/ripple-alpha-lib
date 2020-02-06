@@ -1,7 +1,7 @@
 'use strict';
-const RippleAPI = require('../../src').RippleAPI; // require('ripple-alpha-lib')
+const RippleAlphaAPI = require('../../src').RippleAlphaAPI; // require('ripple-alpha-lib')
 
-const api = new RippleAPI({server: 'wss://s1.ripple.com:6005'});
+const api = new RippleAlphaAPI({server: 'wss://s1.ripplealpha.com:6005'});
 const address = 'r3kmLJN5D28dHuH8vZNUZpMC43pEHpaocV';
 
 api.connect().then(() => {

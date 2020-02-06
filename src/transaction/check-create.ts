@@ -3,7 +3,7 @@ const toRippledAmount = utils.common.toRippledAmount
 import {validate, iso8601ToRippleTime} from '../common'
 import {Instructions, Prepare, TransactionJSON} from './types'
 import {Amount} from '../common/types/objects'
-import {RippleAPI} from '..'
+import {RippleAlphaAPI} from '..'
 
 export type CheckCreateParameters = {
   destination: string,
@@ -38,7 +38,7 @@ function createCheckCreateTransaction(account: string,
   return txJSON
 }
 
-function prepareCheckCreate(this: RippleAPI, address: string,
+function prepareCheckCreate(this: RippleAlphaAPI, address: string,
   checkCreate: CheckCreateParameters,
   instructions: Instructions = {}
 ): Promise<Prepare> {

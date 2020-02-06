@@ -3,7 +3,7 @@ import {validate, ensureClassicAddress} from '../common'
 import {Connection} from '../common'
 import {GetTrustlinesOptions} from './trustlines'
 import {FormattedTrustline} from '../common/types/objects/trustlines'
-import {RippleAPI} from '..'
+import {RippleAlphaAPI} from '..'
 
 export type Balance = {
   value: string,
@@ -47,7 +47,7 @@ function getLedgerVersionHelper(connection: Connection, optionValue?: number
   return connection.getLedgerVersion()
 }
 
-function getBalances(this: RippleAPI, address: string, options: GetTrustlinesOptions = {}
+function getBalances(this: RippleAlphaAPI, address: string, options: GetTrustlinesOptions = {}
 ): Promise<GetBalances> {
   validate.getTrustlines({address, options})
 

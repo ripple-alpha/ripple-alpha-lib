@@ -104,7 +104,7 @@ function getCollectKeyFromCommand(command: string): string|undefined {
   }
 }
 
-class RippleAPI extends EventEmitter {
+class RippleAlphaAPI extends EventEmitter {
   _feeCushion: number
   _maxFeeXLA: string
 
@@ -359,7 +359,7 @@ class RippleAPI extends EventEmitter {
 
   static deriveXAddress = deriveXAddress
 
-  // RippleAPI.deriveClassicAddress (static) is a new name for api.deriveAddress
+  // RippleAlphaAPI.deriveClassicAddress (static) is a new name for api.deriveAddress
   static deriveClassicAddress = deriveAddress
 
   static isValidXAddress = isValidXAddress
@@ -376,5 +376,5 @@ class RippleAPI extends EventEmitter {
 }
 
 export {
-  RippleAPI
+  RippleAlphaAPI
 }

@@ -4,7 +4,7 @@
 
 Returns formatted bids and asks, which make up an orderbook.
 
-This is a static method on the `RippleAPI` class.
+This is a static method on the `RippleAlphaAPI` class.
 
 ### Parameters
 
@@ -44,15 +44,15 @@ const address = 'r9cZA1mLK5R5Am25ArfXFmqgNwjZgnfk59';
 return Promise.all(
   [
     this.api.request('book_offers', {
-      taker_gets: RippleAPI.renameCounterpartyToIssuer(orderbookInfo.base),
-      taker_pays: RippleAPI.renameCounterpartyToIssuer(orderbookInfo.counter),
+      taker_gets: RippleAlphaAPI.renameCounterpartyToIssuer(orderbookInfo.base),
+      taker_pays: RippleAlphaAPI.renameCounterpartyToIssuer(orderbookInfo.counter),
       ledger_index: 'validated',
       limit: 20,
       taker: address
     }),
     this.api.request('book_offers', {
-      taker_gets: RippleAPI.renameCounterpartyToIssuer(orderbookInfo.counter),
-      taker_pays: RippleAPI.renameCounterpartyToIssuer(orderbookInfo.base),
+      taker_gets: RippleAlphaAPI.renameCounterpartyToIssuer(orderbookInfo.counter),
+      taker_pays: RippleAlphaAPI.renameCounterpartyToIssuer(orderbookInfo.base),
       ledger_index: 'validated',
       limit: 20,
       taker: address
@@ -61,7 +61,7 @@ return Promise.all(
 ).then((directOfferResults, reverseOfferResults) => {
   const directOffers = (directOfferResults ? directOfferResults : []).reduce((acc, res) => acc.concat(res.offers), [])
   const reverseOffers = (reverseOfferResults ? reverseOfferResults : []).reduce((acc, res) => acc.concat(res.offers), [])
-  const orderbook = RippleAPI.formatBidsAndAsks(orderbookInfo, [...directOffers, ...reverseOffers]);
+  const orderbook = RippleAlphaAPI.formatBidsAndAsks(orderbookInfo, [...directOffers, ...reverseOffers]);
   console.log(JSON.stringify(orderbook, null, 2));
 });
 ```

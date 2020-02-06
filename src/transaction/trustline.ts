@@ -6,7 +6,7 @@ import {Instructions, Prepare, TransactionJSON} from './types'
 import {
   FormattedTrustlineSpecification
 } from '../common/types/objects/trustlines'
-import {RippleAPI} from '..'
+import {RippleAlphaAPI} from '..'
 
 function convertQuality(quality) {
   return (new BigNumber(quality)).shiftedBy(9).integerValue(BigNumber.ROUND_DOWN).toNumber()
@@ -50,7 +50,7 @@ function createTrustlineTransaction(account: string,
   return txJSON
 }
 
-function prepareTrustline(this: RippleAPI, address: string,
+function prepareTrustline(this: RippleAlphaAPI, address: string,
   trustline: FormattedTrustlineSpecification, instructions: Instructions = {}
 ): Promise<Prepare> {
   try {

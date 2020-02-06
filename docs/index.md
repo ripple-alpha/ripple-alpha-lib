@@ -106,9 +106,9 @@
 
 # Introduction
 
-RippleAPI (ripple-alpha-lib) is the official client library to the XLA Ledger. Currently, RippleAPI is only available in JavaScript/TypeScript.
+RippleAlphaAPI (ripple-alpha-lib) is the official client library to the XLA Ledger. Currently, RippleAlphaAPI is only available in JavaScript/TypeScript.
 
-Using RippleAPI, you can:
+Using RippleAlphaAPI, you can:
 
 * [Query transactions from the XLA Ledger history](#gettransaction)
 * [Sign](#sign) transactions securely without connecting to any server
@@ -122,12 +122,12 @@ This page contains documentation for ripple-alpha-lib. To use ripple-alpha-lib w
 
 ## Boilerplate
 
-Use the following [boilerplate code](https://en.wikipedia.org/wiki/Boilerplate_code) to wrap your custom code using RippleAPI.
+Use the following [boilerplate code](https://en.wikipedia.org/wiki/Boilerplate_code) to wrap your custom code using RippleAlphaAPI.
 
 ```javascript
-const RippleAPI = require('ripple-alpha-lib').RippleAPI;
+const RippleAlphaAPI = require('ripple-alpha-lib').RippleAlphaAPI;
 
-const api = new RippleAPI({
+const api = new RippleAlphaAPI({
   server: 'wss://s1.ripplealpha.com:6005' // Public rippled server hosted by Ripple, Inc.
 });
 api.on('error', (errorCode, errorMessage) => {
@@ -148,9 +148,9 @@ api.connect().then(() => {
 }).catch(console.error);
 ```
 
-RippleAPI is designed to work in [Node.js](https://nodejs.org) version 6 or higher. Ripple recommends Node.js v10 LTS.
+RippleAlphaAPI is designed to work in [Node.js](https://nodejs.org) version 6 or higher. Ripple recommends Node.js v10 LTS.
 
-The code samples in this documentation are written with ECMAScript 6 (ES6) features, but `RippleAPI` also works with ECMAScript 5 (ES5). Regardless of whether you use ES5 or ES6, the methods that return Promises return [ES6-style promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise).
+The code samples in this documentation are written with ECMAScript 6 (ES6) features, but `RippleAlphaAPI` also works with ECMAScript 5 (ES5). Regardless of whether you use ES5 or ES6, the methods that return Promises return [ES6-style promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise).
 
 <aside class="notice">
 All the code snippets in this documentation assume that you have surrounded them with this boilerplate.
@@ -166,7 +166,7 @@ The "error" event is emitted whenever an error occurs that cannot be associated 
 
 ### Parameters
 
-The RippleAPI constructor optionally takes one argument, an object with the following options:
+The RippleAlphaAPI constructor optionally takes one argument, an object with the following options:
 
 Name | Type | Description
 ---- | ---- | -----------
@@ -183,13 +183,13 @@ timeout | integer | *Optional* Timeout in milliseconds before considering a requ
 trace | boolean | *Optional* If true, log rippled requests and responses to stdout.
 trustedCertificates | array\<string\> | *Optional* Array of PEM-formatted SSL certificates to trust when connecting to a proxy. This is useful if you want to use a self-signed certificate on the proxy server. Note: Each element must contain a single certificate; concatenated certificates are not valid.
 
-If you omit the `server` parameter, RippleAPI operates [offline](#offline-functionality).
+If you omit the `server` parameter, RippleAlphaAPI operates [offline](#offline-functionality).
 
 
 ### Installation ###
 
 1. Install [Node.js](https://nodejs.org) and [Yarn](https://yarnpkg.com/en/docs/install). Most Linux distros have a package for Node.js; check that it's the version you want.
-2. Use yarn to install RippleAPI:
+2. Use yarn to install RippleAlphaAPI:
       `yarn add ripple-alpha-lib`
 
 After you have installed ripple-alpha-lib, you can create scripts using the [boilerplate](#boilerplate) and run them using the Node.js executable, typically named `node`:
@@ -198,14 +198,14 @@ After you have installed ripple-alpha-lib, you can create scripts using the [boi
 
 ## Offline functionality
 
-RippleAPI can also function without internet connectivity. This can be useful in order to generate secrets and sign transactions from a secure, isolated machine.
+RippleAlphaAPI can also function without internet connectivity. This can be useful in order to generate secrets and sign transactions from a secure, isolated machine.
 
-To instantiate RippleAPI in offline mode, use the following boilerplate code:
+To instantiate RippleAlphaAPI in offline mode, use the following boilerplate code:
 
 ```javascript
-const RippleAPI = require('ripple-alpha-lib').RippleAPI;
+const RippleAlphaAPI = require('ripple-alpha-lib').RippleAlphaAPI;
 
-const api = new RippleAPI();
+const api = new RippleAlphaAPI();
 /* insert code here */
 ```
 
@@ -256,7 +256,7 @@ Currencies are represented as either 3-character currency codes or 40-character 
 ## Value
 A *value* is a quantity of a currency represented as a decimal string. Be careful: JavaScript's native number format does not have sufficient precision to represent all values. XLA has different precision from other currencies.
 
-**XLA** has 6 significant digits past the decimal point. In other words, XLA cannot be divided into positive values smaller than `0.000001` (1e-6). This smallest unit is called a "drop". XLA has a maximum value of `100000000000` (1e11). Some RippleAPI methods accept XLA in order to maintain compatibility with older versions of the API. For consistency with the `rippled` APIs, we recommend formally specifying XLA values in *drops* in all API requests, and converting them to XLA for display. This is similar to Bitcoin's *satoshis* and Ethereum's *wei*. 1 XLA = 1,000,000 drops.
+**XLA** has 6 significant digits past the decimal point. In other words, XLA cannot be divided into positive values smaller than `0.000001` (1e-6). This smallest unit is called a "drop". XLA has a maximum value of `100000000000` (1e11). Some RippleAlphaAPI methods accept XLA in order to maintain compatibility with older versions of the API. For consistency with the `rippled` APIs, we recommend formally specifying XLA values in *drops* in all API requests, and converting them to XLA for display. This is similar to Bitcoin's *satoshis* and Ethereum's *wei*. 1 XLA = 1,000,000 drops.
 
 **Non-XLA values** have 16 decimal digits of precision, with a maximum value of `9999999999999999e80`. The smallest positive non-XLA value is `1e-81`.
 
@@ -320,7 +320,7 @@ Type | Description
 
 ## Transaction Flow
 
-Executing a transaction with `RippleAPI` requires the following four steps:
+Executing a transaction with `RippleAlphaAPI` requires the following four steps:
 
 1. Prepare - Create an unsigned transaction based on a [specification](#transaction-specifications) and [instructions](#transaction-instructions). There is a method to prepare each type of transaction:
     * [preparePayment](#preparepayment)
@@ -353,7 +353,7 @@ Transaction instructions indicate how to execute a transaction, complementary wi
 Name | Type | Description
 ---- | ---- | -----------
 fee | [value](#value) | *Optional* An exact fee to pay for the transaction, before multiplying for multi-signed transactions. See [Transaction Fees](#transaction-fees) for more information.
-maxFee | [value](#value) | *Optional* Deprecated: Use `maxFeeXLA` in the RippleAPI constructor instead. The maximum fee to pay for this transaction. If this exceeds `maxFeeXLA`, `maxFeeXLA` will be used instead. See [Transaction Fees](#transaction-fees) for more information.
+maxFee | [value](#value) | *Optional* Deprecated: Use `maxFeeXLA` in the RippleAlphaAPI constructor instead. The maximum fee to pay for this transaction. If this exceeds `maxFeeXLA`, `maxFeeXLA` will be used instead. See [Transaction Fees](#transaction-fees) for more information.
 maxLedgerVersion | integer,null | *Optional* The highest ledger version that the transaction can be included in. If this option and `maxLedgerVersionOffset` are both omitted, the `maxLedgerVersion` option will default to 3 greater than the current validated ledger version (equivalent to `maxLedgerVersionOffset=3`). Use `null` to not set a maximum ledger version. If not null, this must be an integer greater than 0, or one of the following strings: 'validated', 'closed', 'current'.
 maxLedgerVersion | string,null | *Optional* The highest ledger version that the transaction can be included in. If this option and `maxLedgerVersionOffset` are both omitted, the `maxLedgerVersion` option will default to 3 greater than the current validated ledger version (equivalent to `maxLedgerVersionOffset=3`). Use `null` to not set a maximum ledger version. If not null, this must be an integer greater than 0, or one of the following strings: 'validated', 'closed', 'current'.
 maxLedgerVersionOffset | integer | *Optional* Offset from current validated ledger version to highest ledger version that the transaction can be included in.
@@ -980,9 +980,9 @@ return api.request(command, params).then(response => {
 
 `renameCounterpartyToIssuer(issue: {currency: string, counterparty: address}): {currency: string, issuer: address}`
 
-Returns an object with the `counterparty` field renamed to `issuer`. This is useful because RippleAPI generally uses the name `counterparty` while the rippled API generally uses the name `issuer`.
+Returns an object with the `counterparty` field renamed to `issuer`. This is useful because RippleAlphaAPI generally uses the name `counterparty` while the rippled API generally uses the name `issuer`.
 
-This is a static method on the `RippleAPI` class.
+This is a static method on the `RippleAlphaAPI` class.
 
 ### Parameters
 
@@ -1005,8 +1005,8 @@ const orderbookInfo = {
     "counterparty": "rvYAfWj5gh67oV6fW32ZzP3Aw4Eubs59B"
   }
 };
-console.log(RippleAPI.renameCounterpartyToIssuer(orderbookInfo.base))
-console.log(RippleAPI.renameCounterpartyToIssuer(orderbookInfo.counter))
+console.log(RippleAlphaAPI.renameCounterpartyToIssuer(orderbookInfo.base))
+console.log(RippleAlphaAPI.renameCounterpartyToIssuer(orderbookInfo.counter))
 ```
 
 ```
@@ -1020,7 +1020,7 @@ console.log(RippleAPI.renameCounterpartyToIssuer(orderbookInfo.counter))
 
 Returns formatted bids and asks, which make up an orderbook.
 
-This is a static method on the `RippleAPI` class.
+This is a static method on the `RippleAlphaAPI` class.
 
 ### Parameters
 
@@ -1083,15 +1083,15 @@ const address = 'r9cZA1mLK5R5Am25ArfXFmqgNwjZgnfk59';
 return Promise.all(
   [
     this.api.request('book_offers', {
-      taker_gets: RippleAPI.renameCounterpartyToIssuer(orderbookInfo.base),
-      taker_pays: RippleAPI.renameCounterpartyToIssuer(orderbookInfo.counter),
+      taker_gets: RippleAlphaAPI.renameCounterpartyToIssuer(orderbookInfo.base),
+      taker_pays: RippleAlphaAPI.renameCounterpartyToIssuer(orderbookInfo.counter),
       ledger_index: 'validated',
       limit: 20,
       taker: address
     }),
     this.api.request('book_offers', {
-      taker_gets: RippleAPI.renameCounterpartyToIssuer(orderbookInfo.counter),
-      taker_pays: RippleAPI.renameCounterpartyToIssuer(orderbookInfo.base),
+      taker_gets: RippleAlphaAPI.renameCounterpartyToIssuer(orderbookInfo.counter),
+      taker_pays: RippleAlphaAPI.renameCounterpartyToIssuer(orderbookInfo.base),
       ledger_index: 'validated',
       limit: 20,
       taker: address
@@ -1100,7 +1100,7 @@ return Promise.all(
 ).then((directOfferResults, reverseOfferResults) => {
   const directOffers = (directOfferResults ? directOfferResults : []).reduce((acc, res) => acc.concat(res.offers), [])
   const reverseOffers = (reverseOfferResults ? reverseOfferResults : []).reduce((acc, res) => acc.concat(res.offers), [])
-  const orderbook = RippleAPI.formatBidsAndAsks(orderbookInfo, [...directOffers, ...reverseOffers]);
+  const orderbook = RippleAlphaAPI.formatBidsAndAsks(orderbookInfo, [...directOffers, ...reverseOffers]);
   console.log(JSON.stringify(orderbook, null, 2));
 });
 ```
@@ -1299,7 +1299,7 @@ return Promise.all(
 
 `connect(): Promise<void>`
 
-Tells the RippleAPI instance to connect to its rippled server.
+Tells the RippleAlphaAPI instance to connect to its rippled server.
 
 ### Parameters
 
@@ -1317,7 +1317,7 @@ See [Boilerplate](#boilerplate) for code sample.
 
 `disconnect(): Promise<void>`
 
-Tells the RippleAPI instance to disconnect from its rippled server.
+Tells the RippleAlphaAPI instance to disconnect from its rippled server.
 
 ### Parameters
 
@@ -1335,7 +1335,7 @@ See [Boilerplate](#boilerplate) for code sample
 
 `isConnected(): boolean`
 
-Checks if the RippleAPI instance is connected to its rippled server.
+Checks if the RippleAlphaAPI instance is connected to its rippled server.
 
 ### Parameters
 
@@ -1359,7 +1359,7 @@ true
 
 `getServerInfo(): Promise<object>`
 
-Get status information about the server that the RippleAPI instance is connected to.
+Get status information about the server that the RippleAlphaAPI instance is connected to.
 
 ### Parameters
 
@@ -1433,15 +1433,15 @@ return api.getServerInfo().then(info => {/* ... */});
 
 `getFee(): Promise<string>`
 
-Returns the estimated transaction fee for the rippled server the RippleAPI instance is connected to.
+Returns the estimated transaction fee for the rippled server the RippleAlphaAPI instance is connected to.
 
-This will use the [feeCushion parameter](#parameters) provided to the RippleAPI constructor, or the default value of `1.2`.
+This will use the [feeCushion parameter](#parameters) provided to the RippleAlphaAPI constructor, or the default value of `1.2`.
 
 ### Parameters
 
 Name | Type | Description
 ---- | ---- | -----------
-cushion | number | *Optional* The fee is the product of the base fee, the `load_factor`, and this cushion. Default is provided by the `RippleAPI` constructor's `feeCushion`.
+cushion | number | *Optional* The fee is the product of the base fee, the `load_factor`, and this cushion. Default is provided by the `RippleAlphaAPI` constructor's `feeCushion`.
 
 ### Return Value
 
@@ -4475,7 +4475,7 @@ This method takes one parameter, the AccountRoot `Flags` number to parse. Note t
 
 ### Return Value
 
-This method returns an object with containing a key for each AccountRoot flag known to this version of RippleAPI. Each flag has a boolean value of `true` or `false`.
+This method returns an object with containing a key for each AccountRoot flag known to this version of RippleAlphaAPI. Each flag has a boolean value of `true` or `false`.
 
 ### Example
 
@@ -5460,7 +5460,7 @@ return api.sign(txJSON, secret); // or: api.sign(txJSON, keypair);
 ### Example (multisigning)
 
 ```javascript
-const RippleAPI = require('ripple-alpha-lib').RippleAPI;
+const RippleAlphaAPI = require('ripple-alpha-lib').RippleAlphaAPI;
 
 // jon's address will have a multi-signing setup with a quorum of 2
 const jon = {
@@ -5507,7 +5507,7 @@ const multiSignPaymentTransaction = {
     Amount: '88000000'
 };
 
-const api = new RippleAPI({
+const api = new RippleAlphaAPI({
     server: 'wss://s1.ripplealpha.com:6005'
 });
 
@@ -6135,18 +6135,18 @@ The remaining transaction types do not have any flags at this time.
 
 ## schemaValidator
 
-Unlike the rest of the ripple-alpha-lib API, schemaValidator is a static object on RippleAPI. It provides utility methods that do not use a server.
+Unlike the rest of the ripple-alpha-lib API, schemaValidator is a static object on RippleAlphaAPI. It provides utility methods that do not use a server.
 
 ## schemaValidate
 
-`RippleAPI.schemaValidator.schemaValidate(schemaName: string, object: any): void`
+`RippleAlphaAPI.schemaValidator.schemaValidate(schemaName: string, object: any): void`
 
 This method checks an object for conformance to a specified schema. It does not return anything, but will throw a `ValidationError` if the object does not conform to the schema.
 
 ### Example
 
 ```javascript
-RippleAPI.schemaValidator.schemaValidate('sign', {
+RippleAlphaAPI.schemaValidator.schemaValidate('sign', {
     signedTransaction: '12000322800000002400000017201B0086955368400000000000000C732102F89EAEC7667B30F33D0687BBA86C3FE2A08CCA40A9186C5BDE2DAA6FA97A37D874473045022100BDE09A1F6670403F341C21A77CF35BA47E45CDE974096E1AA5FC39811D8269E702203D60291B9A27F1DCABA9CF5DED307B4F23223E0B6F156991DB601DFB9C41CE1C770A726970706C652E636F6D81145E7B112523F68D2F5E879DB4EAC51C6698A69304',
     id: '02ACE87F1996E3A23690A5BB7F1774BF71CCBA68F79805831B42ABAD5913D6F4'
 })
@@ -6159,7 +6159,7 @@ undefined
 If the object is valid (conforms to the schema), nothing is returned. Otherwise, `schemaValidate` throws an error:
 
 ```javascript
-RippleAPI.schemaValidator.schemaValidate('sign', {
+RippleAlphaAPI.schemaValidator.schemaValidate('sign', {
     signedTransaction: '12000322800000002400000017201B0086955368400000000000000C732102F89EAEC7667B30F33D0687BBA86C3FE2A08CCA40A9186C5BDE2DAA6FA97A37D874473045022100BDE09A1F6670403F341C21A77CF35BA47E45CDE974096E1AA5FC39811D8269E702203D60291B9A27F1DCABA9CF5DED307B4F23223E0B6F156991DB601DFB9C41CE1C770A726970706C652E636F6D81145E7B112523F68D2F5E879DB4EAC51C6698A69304',
     id: '123'
 })

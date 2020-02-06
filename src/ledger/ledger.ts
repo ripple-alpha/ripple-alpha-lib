@@ -1,6 +1,6 @@
 import {validate} from '../common'
 import {FormattedLedger, parseLedger} from './parse/ledger'
-import {RippleAPI} from '..'
+import {RippleAlphaAPI} from '..'
 
 export type GetLedgerOptions = {
   ledgerHash?: string,
@@ -11,7 +11,7 @@ export type GetLedgerOptions = {
 }
 
 async function getLedger(
-  this: RippleAPI, options: GetLedgerOptions = {}
+  this: RippleAlphaAPI, options: GetLedgerOptions = {}
 ): Promise<FormattedLedger> {
   // 1. Validate
   validate.getLedger({options})

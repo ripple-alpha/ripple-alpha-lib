@@ -2,7 +2,7 @@ import BigNumber from 'bignumber.js'
 import * as common from '../common'
 import {Memo} from '../common/types/objects'
 import {Instructions, Prepare, TransactionJSON} from './types'
-import {RippleAPI} from '..'
+import {RippleAlphaAPI} from '..'
 import {ValidationError} from '../common/errors'
 import {xAddressToClassicAddress, isValidXAddress} from 'ripple-address-codec'
 
@@ -93,7 +93,7 @@ function getClassicAccountAndTag(Account: string, expectedTag?: number): Classic
   }
 }
 
-function prepareTransaction(txJSON: TransactionJSON, api: RippleAPI,
+function prepareTransaction(txJSON: TransactionJSON, api: RippleAlphaAPI,
   instructions: Instructions
 ): Promise<Prepare> {
   common.validate.instructions(instructions)
@@ -212,7 +212,7 @@ function prepareTransaction(txJSON: TransactionJSON, api: RippleAPI,
       if (fee.isGreaterThan(api._maxFeeXLA)) {
         return Promise.reject(new ValidationError(`Fee of ${fee.toString(10)} XLA exceeds ` +
           `max of ${api._maxFeeXLA} XLA. To use this fee, increase ` +
-          '`maxFeeXLA` in the RippleAPI constructor.'))
+          '`maxFeeXLA` in the RippleAlphaAPI constructor.'))
       }
       newTxJSON.Fee = scaleValue(common.xlaToDrops(instructions.fee), multiplier)
       return Promise.resolve()

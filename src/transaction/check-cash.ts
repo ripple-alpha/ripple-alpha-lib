@@ -4,7 +4,7 @@ const toRippledAmount = utils.common.toRippledAmount
 import {validate} from '../common'
 import {Instructions, Prepare, TransactionJSON} from './types'
 import {Amount} from '../common/types/objects'
-import {RippleAPI} from '..'
+import {RippleAlphaAPI} from '..'
 
 export type CheckCashParameters = {
   checkID: string,
@@ -37,7 +37,7 @@ function createCheckCashTransaction(account: string,
   return txJSON
 }
 
-function prepareCheckCash(this: RippleAPI, address: string,
+function prepareCheckCash(this: RippleAlphaAPI, address: string,
   checkCash: CheckCashParameters,
   instructions: Instructions = {}
 ): Promise<Prepare> {

@@ -1,19 +1,19 @@
 import * as common from '../common'
-import {RippleAPI} from '..'
+import {RippleAlphaAPI} from '..'
 
-function isConnected(this: RippleAPI): boolean {
+function isConnected(this: RippleAlphaAPI): boolean {
   return this.connection.isConnected()
 }
 
-function getLedgerVersion(this: RippleAPI): Promise<number> {
+function getLedgerVersion(this: RippleAlphaAPI): Promise<number> {
   return this.connection.getLedgerVersion()
 }
 
-function connect(this: RippleAPI): Promise<void> {
+function connect(this: RippleAlphaAPI): Promise<void> {
   return this.connection.connect()
 }
 
-function disconnect(this: RippleAPI): Promise<void> {
+function disconnect(this: RippleAlphaAPI): Promise<void> {
   return this.connection.disconnect()
 }
 

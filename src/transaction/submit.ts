@@ -1,7 +1,7 @@
 import * as _ from 'lodash'
 import * as utils from './utils'
 import {validate} from '../common'
-import {RippleAPI} from '..'
+import {RippleAlphaAPI} from '..'
 
 export interface FormattedSubmitResponse {
   resultCode: string,
@@ -37,7 +37,7 @@ function formatSubmitResponse(response): FormattedSubmitResponse {
 }
 
 async function submit(
-  this: RippleAPI, signedTransaction: string
+  this: RippleAlphaAPI, signedTransaction: string
 ): Promise<FormattedSubmitResponse> {
   // 1. Validate
   validate.submit({signedTransaction})
