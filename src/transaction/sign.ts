@@ -1,6 +1,6 @@
 import isEqual from 'lodash.isequal'
 import * as utils from './utils'
-import keypairs from 'ripple-keypairs'
+import keypairs from 'ripple-alpha-keypairs'
 import binaryCodec from 'ripple-binary-codec'
 import {computeBinaryTransactionHash} from '../common/hashes'
 import {SignOptions, KeyPair, TransactionJSON} from './types'

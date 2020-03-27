@@ -1,6 +1,6 @@
 {
   "name": "ripple-alpha-lib",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "license": "ISC",
   "description": "A TypeScript/JavaScript API for interacting with the XLA Ledger in Node.js and the browser",
   "files": [
@@ -25,9 +25,9 @@
     "lodash": "^4.17.4",
     "lodash.isequal": "^4.5.0",
     "ripple-address-codec": "^4.0.0",
-    "ripple-alpha-lib-transactionparser": "^0.8.2",
+    "ripple-alpha-keypairs": "^1.1.0",
+    "ripple-alpha-lib-transactionparser": "^0.8.3",
     "ripple-binary-codec": "^0.2.5",
-    "ripple-keypairs": "^0.11.0",
     "ws": "^7.2.0"
   },
   "devDependencies": {

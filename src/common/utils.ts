@@ -1,6 +1,6 @@
 import * as _ from 'lodash'
 import BigNumber from 'bignumber.js'
-import {deriveKeypair} from 'ripple-keypairs'
+import {deriveKeypair} from 'ripple-alpha-keypairs'
 import {Amount, RippledAmount} from './types/objects'
 import {ValidationError} from './errors'
 
@@ -128,7 +128,7 @@ function removeUndefined<T extends object>(obj: T): T {
  * @return {Number} ms since unix epoch
  */
 function rippleToUnixTimestamp(rpepoch: number): number {
-  return (rpepoch + 0x386D4380) * 1000
+  return (rpepoch + 0x386d4380) * 1000
 }
 
 /**
@@ -136,7 +136,7 @@ function rippleToUnixTimestamp(rpepoch: number): number {
  * @return {Number} seconds since ripple epoch (1/1/2000 GMT)
  */
 function unixToRippleTimestamp(timestamp: number): number {
-  return Math.round(timestamp / 1000) - 0x386D4380
+  return Math.round(timestamp / 1000) - 0x386d4380
 }
 
 function rippleTimeToISO8601(rippleTime: number): string {

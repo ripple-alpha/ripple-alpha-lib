@@ -1,5 +1,5 @@
 import * as common from '../common'
-import keypairs from 'ripple-keypairs'
+import keypairs from 'ripple-alpha-keypairs'
 import binary from 'ripple-binary-codec'
 const {validate, xlaToDrops} = common
 
