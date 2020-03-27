@@ -348,15 +348,10 @@ acorn-walk@^6.1.1:
   resolved "https://registry.yarnpkg.com/acorn-walk/-/acorn-walk-6.2.0.tgz#123cb8f3b84c2171f1f7fb252615b1c78a6b1a8c"
   integrity sha512-7evsyfH1cLOCdAzZAd43Cic04yKydNx0cF+7tiA19p1XnLLPU4dpCQOqpjqwokFe//vS0QqfqqjCS2JkiIs0cA==
 
-acorn@^6.0.7:
-  version "6.3.0"
-  resolved "https://registry.yarnpkg.com/acorn/-/acorn-6.3.0.tgz#0087509119ffa4fc0a0041d1e93a417e68cb856e"
-  integrity sha512-/czfa8BwS88b9gWQVhc8eknunSA2DoJpJyTQkhheIf5E48u1N0R4q/YxxsAeqRrmK9TQ/uYfgLDfZo91UlANIA==
-
-acorn@^6.2.1:
-  version "6.4.0"
-  resolved "https://registry.yarnpkg.com/acorn/-/acorn-6.4.0.tgz#b659d2ffbafa24baf5db1cdbb2c94a983ecd2784"
-  integrity sha512-gac8OEcQ2Li1dxIEWGZzsp2BitJxwkwcOm0zHAJLcPJaVvm58FRnk6RkuLRpU1EujipU2ZFODv2P9DLMfnV8mw==
+acorn@^6.0.7, acorn@^6.2.1:
+  version "6.4.1"
+  resolved "https://registry.yarnpkg.com/acorn/-/acorn-6.4.1.tgz#531e58ba3f51b9dacb9a6646ca4debf5b14ca474"
+  integrity sha512-ZVA9k326Nwrj3Cj9jlh3wGFutC2ZornPNARZwsNYqQYgN0EsV2d53w5RN/co65Ohn4sUAUtb1rSUAOD6XN9idA==
 
 acorn@^7.1.0:
   version "7.1.0"
@@ -3860,6 +3855,14 @@ ripple-address-codec@^4.0.0:
     base-x "3.0.4"
     create-hash "^1.1.2"
 
+ripple-alpha-lib-transactionparser@^0.8.2:
+  version "0.8.2"
+  resolved "https://registry.yarnpkg.com/ripple-alpha-lib-transactionparser/-/ripple-alpha-lib-transactionparser-0.8.2.tgz#782147e698853e0a24d028392b6477c98591ad34"
+  integrity sha512-10Cdd2ix52gWeJyVcmH/VT4HTYfUoVJde2wXLLLsIbpwcAqiYhsX1h5wv6oVx3IJ8jQaJN1BPHyt7PDVNSvXQA==
+  dependencies:
+    bignumber.js "^9.0.0"
+    lodash "^4.17.15"
+
 ripple-binary-codec@^0.2.5:
   version "0.2.5"
   resolved "https://registry.yarnpkg.com/ripple-binary-codec/-/ripple-binary-codec-0.2.5.tgz#4d5b0cf8f68c9dd44c9350b2ff1616e60ee63fe8"
@@ -3884,14 +3887,6 @@ ripple-keypairs@^0.11.0:
     elliptic "^6.4.0"
     hash.js "^1.0.3"
     ripple-address-codec "^2.0.1"
-
-ripple-lib-transactionparser@0.8.1:
-  version "0.8.1"
-  resolved "https://registry.yarnpkg.com/ripple-lib-transactionparser/-/ripple-lib-transactionparser-0.8.1.tgz#28aadda4d3450937bf4804e467b2ad6937d50177"
-  integrity sha512-VNbPEWkm5BmEj5xtV+qFyS6rE2bKkOX/KRoYbUp9pzrdNmwI8lMfwNHRX1zz8574mCSSBtRAwGLuQokmvk5d6Q==
-  dependencies:
-    bignumber.js "^9.0.0"
-    lodash "^4.17.4"
 
 run-async@^2.2.0:
   version "2.3.0"
